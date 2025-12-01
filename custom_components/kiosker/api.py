@@ -188,7 +188,8 @@ class KioskerApiClient:
         """Parse a blackout state response."""
         payload = data.get("blackout")
         if payload is None:
-            return None
+            # Some API versions omit the blackout object when inactive.
+            payload = {"visible": False}
         return BlackoutState(
             visible=payload.get("visible"),
             text=payload.get("text"),

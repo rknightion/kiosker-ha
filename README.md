@@ -61,6 +61,43 @@ Full documentation is available at **[m7kni.io/kiosker-ha](https://m7kni.io/kios
 - Kiosker app with API access enabled
 - Device reachable from Home Assistant on your local network (default API port: `8081`)
 
+## Entities
+
+### Sensors
+
+| Entity | Description |
+| ------ | ----------- |
+| Ambient Light | Ambient light level (lux) |
+| Battery Level | Battery percentage |
+| Battery State | Charging state (Charging/Unplugged/etc.) |
+| Last Interaction | Timestamp of last touch/interaction |
+| Last Motion | Timestamp of last detected motion |
+| App Version | Kiosker app version |
+| OS Version | iOS/iPadOS version |
+| Device Model | Apple device model |
+
+### Binary Sensors
+
+| Entity | Description |
+| ------ | ----------- |
+| Screensaver Active | On when screensaver is visible |
+| Screensaver Disabled | On when screensaver is disabled |
+| Blackout Active | On when blackout overlay is visible |
+
+### Buttons
+
+| Entity | Description |
+| ------ | ----------- |
+| Ping | Verify connectivity with the kiosk |
+| Refresh Page | Reload the current page |
+| Go Home | Navigate to the configured start page |
+| Go Forward | Navigate forward in history |
+| Go Back | Navigate backward in history |
+| Print Page | Trigger a print of the current page |
+| Clear Cache | Clear browser cache and data |
+| Clear Cookies | Clear cookies |
+| Dismiss Screensaver | Simulate an interaction to clear the screensaver |
+
 ## Services
 
 The integration exposes several services under the `kiosker` domain:

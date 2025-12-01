@@ -7,9 +7,10 @@ from typing import Any
 
 from homeassistant.components.diagnostics import async_redact_data
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import CONF_ACCESS_TOKEN, CONF_BASE_URL, CONF_NAME
+from homeassistant.const import CONF_NAME
 from homeassistant.core import HomeAssistant
 
+from .const import CONF_ACCESS_TOKEN, CONF_BASE_URL
 from .coordinator import KioskerDataUpdateCoordinator
 
 TO_REDACT = {CONF_ACCESS_TOKEN}

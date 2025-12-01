@@ -14,7 +14,6 @@ This guide walks through prerequisites, installing the integration, and completi
 - The device reachable from Home Assistant on your local network (default API port: `8081`).
 - An **Access Token** generated in the Kiosker app.
 
-> 💡 Tip: Keep the tablet and Home Assistant on the same LAN/VLAN for the lowest latency.
 
 ## Enable the Kiosker API
 

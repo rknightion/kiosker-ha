@@ -2,8 +2,7 @@ navigate_url:
   name: Navigate to URL
   description: Navigate the kiosk browser to a specific URL.
   target:
-    device:
-      integration: kiosker
+    device: {}
   fields:
     url:
       name: URL
@@ -18,8 +17,7 @@ set_blackout:
   name: Set blackout
   description: Show or hide the blackout overlay and optionally customize its appearance.
   target:
-    device:
-      integration: kiosker
+    device: {}
   fields:
     visible:
       name: Visible
@@ -66,8 +64,7 @@ set_screensaver:
   name: Set screensaver
   description: Enable or disable the screensaver and optionally set its visibility.
   target:
-    device:
-      integration: kiosker
+    device: {}
   fields:
     disabled:
       name: Disabled
@@ -86,8 +83,7 @@ set_start_url:
   name: Set start URL
   description: Update the kiosk start page URL used on launch or reset.
   target:
-    device:
-      integration: kiosker
+    device: {}
   fields:
     url:
       name: URL

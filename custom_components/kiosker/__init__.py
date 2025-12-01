@@ -15,6 +15,7 @@ from homeassistant.exceptions import (
     ConfigEntryNotReady,
     HomeAssistantError,
 )
+from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.typing import ConfigType
 
@@ -37,6 +38,8 @@ from .coordinator import KioskerDataUpdateCoordinator
 from .exceptions import KioskerConnectionError, KioskerInvalidAuth
 
 _LOGGER = logging.getLogger(__name__)
+
+CONFIG_SCHEMA = cv.config_entry_only_config_schema(DOMAIN)
 
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
@@ -141,10 +144,6 @@ def _get_entry_from_call(hass: HomeAssistant, call: ServiceCall) -> dict[str, An
 
 def _register_services(hass: HomeAssistant) -> None:
     """Register Kiosker services."""
-    from homeassistant.helpers import (
-        config_validation as cv,  # inline import for HA typing
-    )
-
     navigate_url_schema = vol.Schema(
         {
             vol.Optional(ATTR_DEVICE_ID): str,

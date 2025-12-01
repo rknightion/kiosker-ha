@@ -1,5 +1,21 @@
 User-agent: *
 Allow: /
 
+Allow: /getting-started/
+Allow: /installation/
+Allow: /configuration/
+Allow: /device-data/
+Allow: /naming-conventions/
+Allow: /api-optimization/
+Allow: /development/
+Allow: /entities/
+Allow: /changelog/
+Allow: /faq/
+
+# Static assets
+Allow: /assets/
+Allow: /stylesheets/
+Allow: /javascripts/
+
 Sitemap: https://m7kni.io/kiosker-ha/sitemap.xml
 Sitemap: https://m7kni.io/kiosker-ha/sitemap.xml.gz

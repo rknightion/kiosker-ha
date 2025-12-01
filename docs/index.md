@@ -1,6 +1,7 @@
 ---
 title: Kiosker Home Assistant Integration
 description: Monitor and control iOS kiosks running Kiosker directly from Home Assistant with status sensors, remote navigation, and kiosk management tools.
+image: assets/social-card.png
 ---
 
 <div align="center">

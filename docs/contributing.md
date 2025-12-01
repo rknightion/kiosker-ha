@@ -34,4 +34,4 @@ Contributions are welcome! Please follow these guidelines to keep the project co
 
 ## Release notes
 
-If your change affects users, add a short note to `docs/changelog.md` describing the behavior and version (or mark as "Unreleased").
+We use release-please for release notes so please make sure your commits align so they're processed automatically.

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://m7kni.io/kiosker-ha/sitemap.xml
+Sitemap: https://m7kni.io/kiosker-ha/sitemap.xml.gz

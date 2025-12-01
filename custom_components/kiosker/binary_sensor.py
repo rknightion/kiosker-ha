@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable
 
 from homeassistant.components.binary_sensor import (
-    BinarySensorDeviceClass,
     BinarySensorEntity,
     BinarySensorEntityDescription,
 )
@@ -31,18 +30,14 @@ BINARY_SENSORS: tuple[KioskerBinarySensorDescription, ...] = (
         key="screensaver_visible",
         name="Screensaver Active",
         icon="mdi:sleep",
-        value_fn=lambda data: data.screensaver.visible
-        if data.screensaver
-        else None,
+        value_fn=lambda data: data.screensaver.visible if data.screensaver else None,
     ),
     KioskerBinarySensorDescription(
         key="screensaver_disabled",
         name="Screensaver Disabled",
         icon="mdi:sleep-off",
         entity_category=EntityCategory.DIAGNOSTIC,
-        value_fn=lambda data: data.screensaver.disabled
-        if data.screensaver
-        else None,
+        value_fn=lambda data: data.screensaver.disabled if data.screensaver else None,
     ),
     KioskerBinarySensorDescription(
         key="blackout_active",
@@ -61,8 +56,7 @@ async def async_setup_entry(
     """Set up Kiosker binary sensors."""
     coordinator: KioskerDataUpdateCoordinator = entry.runtime_data
     async_add_entities(
-        KioskerBinarySensor(coordinator, description)
-        for description in BINARY_SENSORS
+        KioskerBinarySensor(coordinator, description) for description in BINARY_SENSORS
     )
 
 
@@ -79,9 +73,7 @@ class KioskerBinarySensor(KioskerEntity, BinarySensorEntity):
         """Initialize the binary sensor."""
         super().__init__(coordinator)
         self.entity_description = description
-        self._attr_unique_id = (
-            f"{coordinator.data.status.device_id}_{description.key}"
-        )
+        self._attr_unique_id = f"{coordinator.data.status.device_id}_{description.key}"
 
     @property
     def is_on(self) -> bool | None:

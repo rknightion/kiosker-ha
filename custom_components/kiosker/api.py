@@ -2,19 +2,17 @@
 
 from __future__ import annotations
 
+import logging
 from dataclasses import dataclass
 from datetime import datetime
-import asyncio
-import logging
 from typing import Any
 
 import aiohttp
 import async_timeout
-from yarl import URL
-
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers import aiohttp_client
 from homeassistant.util import dt as dt_util
+from yarl import URL
 
 from .const import REQUEST_TIMEOUT
 from .exceptions import (
@@ -137,7 +135,7 @@ class KioskerApiClient:
         except aiohttp.ClientError as err:
             _LOGGER.error("Kiosker client error: %s", err)
             raise KioskerConnectionError(err) from err
-        except asyncio.TimeoutError as err:
+        except TimeoutError as err:
             _LOGGER.error("Kiosker request timeout: %s", err)
             raise KioskerConnectionError(err) from err
 

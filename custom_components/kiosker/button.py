@@ -10,6 +10,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import EntityCategory
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
 from .coordinator import KioskerDataUpdateCoordinator
 from .entity import KioskerEntity
 
@@ -109,9 +110,7 @@ class KioskerActionButton(KioskerEntity, ButtonEntity):
         """Initialize the button."""
         super().__init__(coordinator)
         self.entity_description = description
-        self._attr_unique_id = (
-            f"{coordinator.data.status.device_id}_{description.key}"
-        )
+        self._attr_unique_id = f"{coordinator.data.status.device_id}_{description.key}"
 
     async def async_press(self) -> None:
         """Handle button press."""
@@ -121,6 +120,7 @@ class KioskerActionButton(KioskerEntity, ButtonEntity):
         if action == "ping":
             _LOGGER.debug("Button ping pressed")
             await client.async_ping()
+            await client.async_navigate_refresh()
         elif action == "refresh":
             _LOGGER.debug("Button refresh pressed")
             await client.async_navigate_refresh()

@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import logging
+from typing import cast
 
 import voluptuous as vol
 from homeassistant import config_entries
+from homeassistant.config_entries import ConfigFlowResult
 from homeassistant.const import CONF_NAME
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
@@ -18,6 +20,7 @@ from .const import (
     DEFAULT_NAME,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
+    MAX_SCAN_INTERVAL,
     MIN_SCAN_INTERVAL,
 )
 from .exceptions import (
@@ -47,7 +50,7 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(
         self, user_input: dict[str, str] | None = None
-    ) -> FlowResult:
+    ) -> ConfigFlowResult:
         """Handle the initial step."""
         errors: dict[str, str] = {}
 
@@ -56,13 +59,24 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             try:
                 status = await _validate_input(self.hass, user_input)
             except KioskerInvalidAuth:
-                _LOGGER.error("Kiosker config flow: invalid auth for %s", user_input[CONF_BASE_URL])
+                _LOGGER.error(
+                    "Kiosker config flow: invalid auth for %s",
+                    user_input[CONF_BASE_URL],
+                )
                 errors["base"] = "invalid_auth"
             except KioskerConnectionError as err:
-                _LOGGER.error("Kiosker config flow: cannot connect to %s (%s)", user_input[CONF_BASE_URL], err)
+                _LOGGER.error(
+                    "Kiosker config flow: cannot connect to %s (%s)",
+                    user_input[CONF_BASE_URL],
+                    err,
+                )
                 errors["base"] = "cannot_connect"
             except KioskerUnexpectedResponse as err:
-                _LOGGER.error("Kiosker config flow: unexpected response for %s (%s)", user_input[CONF_BASE_URL], err)
+                _LOGGER.error(
+                    "Kiosker config flow: unexpected response for %s (%s)",
+                    user_input[CONF_BASE_URL],
+                    err,
+                )
                 errors["base"] = "unknown"
             else:
                 await self.async_set_unique_id(status.device_id)
@@ -86,7 +100,9 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         data_schema = vol.Schema(
             {
                 vol.Optional(CONF_NAME): str,
-                vol.Required(CONF_BASE_URL, default="http://tablet-office:8081/api/v1"): str,
+                vol.Required(
+                    CONF_BASE_URL, default="http://tablet-office:8081/api/v1"
+                ): str,
                 vol.Required(CONF_ACCESS_TOKEN): str,
             }
         )
@@ -99,7 +115,7 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_reauth(
         self, _entry_data: dict[str, str]
-    ) -> FlowResult:  # pragma: no cover - exercised in HA runtime
+    ) -> ConfigFlowResult:  # pragma: no cover - exercised in HA runtime
         """Handle reauthentication."""
         self._reauth_entry = self.hass.config_entries.async_get_entry(
             self.context["entry_id"]
@@ -108,9 +124,11 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_reauth_confirm(
         self, user_input: dict[str, str] | None = None
-    ) -> FlowResult:
+    ) -> ConfigFlowResult:
         """Confirm reauthentication."""
-        assert self._reauth_entry
+        if self._reauth_entry is None:
+            _LOGGER.error("Kiosker reauth: missing entry in context")
+            return self.async_abort(reason="reauth_failed")
         errors: dict[str, str] = {}
 
         if user_input is not None:
@@ -121,13 +139,23 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             try:
                 await _validate_input(self.hass, update)
             except KioskerInvalidAuth:
-                _LOGGER.error("Kiosker reauth: invalid auth for %s", update[CONF_BASE_URL])
+                _LOGGER.error(
+                    "Kiosker reauth: invalid auth for %s", update[CONF_BASE_URL]
+                )
                 errors["base"] = "invalid_auth"
             except KioskerConnectionError as err:
-                _LOGGER.error("Kiosker reauth: cannot connect to %s (%s)", update[CONF_BASE_URL], err)
+                _LOGGER.error(
+                    "Kiosker reauth: cannot connect to %s (%s)",
+                    update[CONF_BASE_URL],
+                    err,
+                )
                 errors["base"] = "cannot_connect"
             except KioskerUnexpectedResponse as err:
-                _LOGGER.error("Kiosker reauth: unexpected response for %s (%s)", update[CONF_BASE_URL], err)
+                _LOGGER.error(
+                    "Kiosker reauth: unexpected response for %s (%s)",
+                    update[CONF_BASE_URL],
+                    err,
+                )
                 errors["base"] = "unknown"
             else:
                 self.hass.config_entries.async_update_entry(
@@ -162,10 +190,14 @@ class KioskerOptionsFlow(config_entries.OptionsFlow):
     ) -> FlowResult:
         """Manage the options."""
         if user_input is not None:
-            return self.async_create_entry(title="", data=user_input)
+            return cast(FlowResult, self.async_create_entry(title="", data=user_input))
 
         current_interval = self.entry.options.get(
             CONF_SCAN_INTERVAL, int(DEFAULT_SCAN_INTERVAL.total_seconds())
+        )
+        current_interval = max(
+            min(current_interval, int(MAX_SCAN_INTERVAL.total_seconds())),
+            int(MIN_SCAN_INTERVAL.total_seconds()),
         )
 
         data_schema = vol.Schema(
@@ -175,13 +207,19 @@ class KioskerOptionsFlow(config_entries.OptionsFlow):
                     default=current_interval,
                 ): vol.All(
                     vol.Coerce(int),
-                    vol.Range(min=int(MIN_SCAN_INTERVAL.total_seconds())),
+                    vol.Range(
+                        min=int(MIN_SCAN_INTERVAL.total_seconds()),
+                        max=int(MAX_SCAN_INTERVAL.total_seconds()),
+                    ),
                 ),
             }
         )
 
-        return self.async_show_form(
-            step_id="init",
-            data_schema=data_schema,
-            errors={},
+        return cast(
+            FlowResult,
+            self.async_show_form(
+                step_id="init",
+                data_schema=data_schema,
+                errors={},
+            ),
         )

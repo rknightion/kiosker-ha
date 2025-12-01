@@ -7,7 +7,6 @@ from datetime import timedelta
 from typing import Any
 
 import voluptuous as vol
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import ATTR_DEVICE_ID
 from homeassistant.core import HomeAssistant, ServiceCall
@@ -26,6 +25,8 @@ from .const import (
     CONF_SCAN_INTERVAL,
     DEFAULT_SCAN_INTERVAL,
     DOMAIN,
+    MAX_SCAN_INTERVAL,
+    MIN_SCAN_INTERVAL,
     PLATFORMS,
     SERVICE_NAVIGATE_URL,
     SERVICE_SET_BLACKOUT,
@@ -58,6 +59,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     interval_seconds = entry.options.get(
         CONF_SCAN_INTERVAL, int(DEFAULT_SCAN_INTERVAL.total_seconds())
+    )
+    interval_seconds = max(
+        min(interval_seconds, int(MAX_SCAN_INTERVAL.total_seconds())),
+        int(MIN_SCAN_INTERVAL.total_seconds()),
     )
     coordinator = KioskerDataUpdateCoordinator(
         hass,
@@ -136,7 +141,9 @@ def _get_entry_from_call(hass: HomeAssistant, call: ServiceCall) -> dict[str, An
 
 def _register_services(hass: HomeAssistant) -> None:
     """Register Kiosker services."""
-    from homeassistant.helpers import config_validation as cv  # inline import for HA typing
+    from homeassistant.helpers import (
+        config_validation as cv,  # inline import for HA typing
+    )
 
     navigate_url_schema = vol.Schema(
         {

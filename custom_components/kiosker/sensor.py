@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import Callable, Any
+from typing import Any
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -20,14 +21,18 @@ from homeassistant.helpers.icon import icon_for_battery_level
 
 try:
     from homeassistant.const import UnitOfIlluminance
-
-    ILLUMINANCE_UNIT = UnitOfIlluminance.LUX
 except ImportError:
+    UnitOfIlluminance = None
+
+if UnitOfIlluminance:
+    ILLUMINANCE_UNIT = UnitOfIlluminance.LUX
+else:
     try:
         from homeassistant.const import LIGHT_LUX
     except ImportError:  # pragma: no cover - fallback for very new/old HA builds
-        LIGHT_LUX = "lx"
-    ILLUMINANCE_UNIT = LIGHT_LUX
+        ILLUMINANCE_UNIT = "lx"
+    else:
+        ILLUMINANCE_UNIT = LIGHT_LUX
 
 from .coordinator import KioskerData, KioskerDataUpdateCoordinator
 from .entity import KioskerEntity
@@ -124,9 +129,7 @@ class KioskerSensor(KioskerEntity, SensorEntity):
         """Initialize the sensor."""
         super().__init__(coordinator)
         self.entity_description = description
-        self._attr_unique_id = (
-            f"{coordinator.data.status.device_id}_{description.key}"
-        )
+        self._attr_unique_id = f"{coordinator.data.status.device_id}_{description.key}"
 
     @property
     def native_value(self) -> Any:
@@ -139,8 +142,7 @@ class KioskerSensor(KioskerEntity, SensorEntity):
         if self.entity_description.key == "battery_state":
             level = self.coordinator.data.status.battery_level
             charging = (
-                str(self.coordinator.data.status.battery_state).lower()
-                == "charging"
+                str(self.coordinator.data.status.battery_state).lower() == "charging"
             )
             return icon_for_battery_level(level, charging=charging)
         return super().icon

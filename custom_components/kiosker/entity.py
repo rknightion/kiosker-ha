@@ -7,13 +7,14 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN, MANUFACTURER
-from .coordinator import KioskerData, KioskerDataUpdateCoordinator
+from .coordinator import KioskerDataUpdateCoordinator
 
 
-class KioskerEntity(CoordinatorEntity[KioskerData]):
+class KioskerEntity(CoordinatorEntity[KioskerDataUpdateCoordinator]):
     """Common entity behavior for Kiosker entities."""
 
     _attr_has_entity_name = True
+    coordinator: KioskerDataUpdateCoordinator
 
     def __init__(self, coordinator: KioskerDataUpdateCoordinator) -> None:
         """Initialize the base entity."""

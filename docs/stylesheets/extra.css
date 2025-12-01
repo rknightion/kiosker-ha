@@ -1,0 +1,53 @@
+/* Custom styles for the Kiosker Home Assistant Integration documentation */
+
+.hero {
+  padding: 2rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, var(--md-primary-fg-color--light) 0%, var(--md-primary-fg-color) 100%);
+  color: var(--md-primary-bg-color);
+  margin: -1.5rem -1.5rem 2rem -1.5rem;
+  border-radius: 0 0 1rem 1rem;
+}
+
+[data-md-color-scheme="slate"] .hero {
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--dark) 100%);
+}
+
+.hero .md-button--primary {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.md-typeset .grid.cards > .card-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .grid.cards > .card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--md-primary-fg-color--light);
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--md-default-fg-color--lightest);
+  font-weight: 700;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+}

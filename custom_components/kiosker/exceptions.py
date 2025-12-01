@@ -11,9 +11,9 @@ class KioskerConnectionError(KioskerError):
     """Raised when the API cannot be reached."""
 
 
-class KioskerInvalidAuth(KioskerError):
+class KioskerInvalidAuth(KioskerError):  # noqa: N818
     """Raised when authentication fails."""
 
 
-class KioskerUnexpectedResponse(KioskerError):
+class KioskerUnexpectedResponse(KioskerError):  # noqa: N818
     """Raised when the API returns unexpected data."""

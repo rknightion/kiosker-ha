@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.2](https://github.com/rknightion/kiosker-ha/compare/v1.1.1...v1.1.2) (2025-12-01)
+
+
+### Documentation
+
+* add entity documentation to readme ([0a1f577](https://github.com/rknightion/kiosker-ha/commit/0a1f5778fe1c69e727127c655fa2cab703ae1e27))
+* fix rel notes ([5457ae6](https://github.com/rknightion/kiosker-ha/commit/5457ae6eca5efc989a6486a084566d1df105764d))
+
 ## [1.1.1](https://github.com/rknightion/kiosker-ha/compare/v1.1.0...v1.1.1) (2025-12-01)
 
 

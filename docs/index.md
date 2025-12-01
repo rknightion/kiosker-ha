@@ -3,6 +3,10 @@ title: Kiosker Home Assistant Integration
 description: Monitor and control iOS kiosks running Kiosker directly from Home Assistant with status sensors, remote navigation, and kiosk management tools.
 ---
 
+<div align="center">
+  <img src="assets/kiosker-logo.webp" alt="Kiosker Logo" width="120">
+</div>
+
 # Kiosker Home Assistant Integration
 
 Keep your wall-mounted dashboards and tablets in sync with Home Assistant. This custom integration talks to the Kiosker app API to surface live device status, expose remote navigation controls, and let you manage screensaver/blackout behavior without picking up the tablet.

@@ -57,11 +57,11 @@ theme:
     - content.footnote.tooltips
     - content.action.edit
     - content.action.view
+  logo: assets/kiosker-logo.webp
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
     view: material/eye
-    logo: material/home-assistant
   favicon: assets/favicon.png
 
 plugins:
@@ -226,7 +226,7 @@ extra_javascript:
   - javascripts/seo.js
 
 copyright: |
-  &copy; 2024 <a href="https://github.com/rknightion"  target="_blank" rel="noopener">Rob Knighton</a> &nbsp;
+  &copy; 2024-2025 <a href="https://github.com/rknightion"  target="_blank" rel="noopener">Rob Knighton</a> &nbsp;
   <a href="#__consent">Change cookie settings</a>
 
 watch:

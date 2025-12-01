@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3](https://github.com/rknightion/kiosker-ha/compare/v1.1.2...v1.1.3) (2025-12-01)
+
+
+### Documentation
+
+* enhance SEO with comprehensive meta tags and structured data ([67911fe](https://github.com/rknightion/kiosker-ha/commit/67911fedfb725573eae9f0c2f28e7cb34d47a65b))
+
 ## [1.1.2](https://github.com/rknightion/kiosker-ha/compare/v1.1.1...v1.1.2) (2025-12-01)
 
 

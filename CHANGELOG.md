@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1](https://github.com/rknightion/kiosker-ha/compare/v1.1.0...v1.1.1) (2025-12-01)
+
+
+### Documentation
+
+* add changelog for version 1.1.0 release ([c0571cb](https://github.com/rknightion/kiosker-ha/commit/c0571cb7d7c915c919711b33b122d7845a80bcaa))
+* add logo and branding to documentation site ([4b6c662](https://github.com/rknightion/kiosker-ha/commit/4b6c662ff4dac225e7325c807f445a11ad3d59ef))
+* add logo assets for documentation ([ac00749](https://github.com/rknightion/kiosker-ha/commit/ac007499b4481f6f8d9d9907038b04343a26309a))
+* rewrite README with comprehensive project overview ([88d6f59](https://github.com/rknightion/kiosker-ha/commit/88d6f592b182a094b54d769504a6ccafbf19104d))
+* update polling intervals and minimum requirements ([08e0224](https://github.com/rknightion/kiosker-ha/commit/08e022442de0d61d4af5c2d39d72186fac32fa84))
+
 ## [1.1.0](https://github.com/rknightion/kiosker-ha/compare/v1.0.0...v1.1.0) (2025-12-01)
 
 

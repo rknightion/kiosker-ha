@@ -14,7 +14,9 @@ from homeassistant.components.sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import PERCENTAGE
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.icon import icon_for_battery_level
 
 try:
     from homeassistant.const import UnitOfIlluminance
@@ -59,18 +61,21 @@ SENSORS: tuple[KioskerSensorDescription, ...] = (
         key="battery_state",
         name="Battery State",
         device_class=SensorDeviceClass.ENUM,
+        icon="mdi:battery",
         value_fn=lambda data: data.status.battery_state,
     ),
     KioskerSensorDescription(
         key="last_interaction",
         name="Last Interaction",
         device_class=SensorDeviceClass.TIMESTAMP,
+        entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=lambda data: data.status.last_interaction,
     ),
     KioskerSensorDescription(
         key="last_motion",
         name="Last Motion",
         device_class=SensorDeviceClass.TIMESTAMP,
+        entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=lambda data: data.status.last_motion,
     ),
     KioskerSensorDescription(
@@ -88,7 +93,7 @@ SENSORS: tuple[KioskerSensorDescription, ...] = (
     KioskerSensorDescription(
         key="model",
         name="Device Model",
-        icon="mdi:tablet-ipad",
+        icon="mdi:tablet",
         value_fn=lambda data: data.status.model,
     ),
 )

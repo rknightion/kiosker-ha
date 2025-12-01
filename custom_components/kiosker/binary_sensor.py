@@ -12,6 +12,7 @@ from homeassistant.components.binary_sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .coordinator import KioskerData, KioskerDataUpdateCoordinator
@@ -37,7 +38,8 @@ BINARY_SENSORS: tuple[KioskerBinarySensorDescription, ...] = (
     KioskerBinarySensorDescription(
         key="screensaver_disabled",
         name="Screensaver Disabled",
-        device_class=BinarySensorDeviceClass.RUNNING,
+        icon="mdi:sleep-off",
+        entity_category=EntityCategory.DIAGNOSTIC,
         value_fn=lambda data: data.screensaver.disabled
         if data.screensaver
         else None,

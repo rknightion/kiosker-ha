@@ -1,0 +1,13 @@
+name = "kiosker-ha"
+compatibility_date = "2024-01-15"
+routes = [
+  { pattern = "m7kni.io/kiosker-ha/*", zone_id = "040860c93967852c90bb3ecb9865f006" },
+  { pattern = "m7kni.io/kiosker-ha", zone_id = "040860c93967852c90bb3ecb9865f006" }
+]
+
+[assets]
+directory = "./site"
+not_found_handling = "404-page"
+
+[observability.logs]
+enabled = true

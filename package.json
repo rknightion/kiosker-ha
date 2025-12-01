@@ -1,0 +1,28 @@
+{
+  "name": "kiosker-ha-docs",
+  "version": "1.0.0",
+  "description": "Documentation for Kiosker Home Assistant Integration",
+  "scripts": {
+    "build": "pip install -r requirements-docs.txt && mkdocs build",
+    "serve": "mkdocs serve",
+    "deploy": "wrangler pages deploy site"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rknightion/kiosker-ha.git"
+  },
+  "keywords": [
+    "home-assistant",
+    "kiosker",
+    "ios",
+    "kiosk",
+    "tablet",
+    "display",
+    "documentation"
+  ],
+  "author": "Rob Knighton",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

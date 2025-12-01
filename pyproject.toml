@@ -1,0 +1,190 @@
+[project]
+name = "kiosker-ha"
+version = "0.1.0"
+description = "Kiosker integration for Home Assistant"
+authors = [
+    {name = "Rob Knight", email = "rob@example.com"}
+]
+license = {text = "Apache-2.0"}
+readme = "README.md"
+requires-python = ">=3.13.2,<3.14"
+keywords = ["homeassistant", "kiosker", "ios", "kiosk", "tablet", "display"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: Apache License 2.0",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Home Automation",
+]
+dependencies = [
+    "aiohttp>=3.12.1",
+]
+
+[dependency-groups]
+dev = [
+    "homeassistant-stubs==2025.11.3",
+    "ruff==0.14.7",
+    "mypy",
+    "bandit==1.9.2",
+    "pytest-homeassistant-custom-component==0.13.297",
+    "mkdocs-git-authors-plugin>=0.10.0",
+    "mkdocs-git-committers-plugin-2>=2.5.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.4.7",
+    "mkdocs-glightbox>=0.4.0",
+    "mkdocs-include-markdown-plugin>=7.1.6",
+    "mkdocs-material>=9.6.16",
+    "mkdocs-minify-plugin>=0.8.0",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/rknightion/kiosker-ha"
+Documentation = "https://m7kni.io/kiosker-ha"
+Repository = "https://github.com/rknightion/kiosker-ha"
+"Bug Tracker" = "https://github.com/rknightion/kiosker-ha/issues"
+
+[tool.mypy]
+python_version = "3.13"
+ignore_missing_imports = true
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+warn_unreachable = true
+strict_optional = true
+show_error_codes = true
+exclude = [
+    "tests/",
+    "scripts/",
+]
+
+# Home Assistant specific configurations
+[[tool.mypy.overrides]]
+module = "homeassistant.*"
+ignore_missing_imports = false
+
+[[tool.mypy.overrides]]
+module = "kiosker.*"
+ignore_missing_imports = false
+
+[[tool.mypy.overrides]]
+module = "custom_components.kiosker.*"
+warn_return_any = false
+warn_unreachable = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = [".git", ".tox", "dist", "build", "*.egg", "venv"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=custom_components.kiosker",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=10",
+    "-vv",
+    "-s",
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow tests",
+]
+
+[tool.coverage.run]
+source = ["custom_components.kiosker"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.bandit]
+targets = ["custom_components"]
+exclude_dirs = ["tests", "scripts"]
+skips = ["B101", "B601"]
+
+[tool.ruff]
+target-version = "py313"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "D",   # pydocstyle
+    "N",  # pep8-naming
+    "Q",  # flake8-quotes
+    "S",
+]
+ignore = [
+    "E501",  # line too long
+    "D202",  # no blank lines after function docstring
+    "D203",  # one blank line before class
+    "D213",  # multi-line docstring summary should start at the second line
+    "C901",  # too complex (we'll allow some complexity for now)
+    "COM812", "COM819",
+    "D100", "D203", "D213", "D300",
+    "E111", "E114", "E117",
+    "ISC001", "ISC002",
+    "Q000", "Q001", "Q002", "Q003",
+    "W191",
+    # Lower priority style preferences
+    "TRY003",  # Avoid specifying long messages outside exception class
+    "TRY300",  # Consider moving statements to else blocks
+    "TRY002",  # Create custom exceptions
+    "TRY301",  # Abstract raise to an inner function
+    "PLR2004", # Magic value used in comparison
+    "PLR0912", # Too many branches
+    "PLR0915", # Too many statements
+    "PLR0913", # Too many arguments
+    "PLR0911", # Too many return statements
+    "PLC0415", # Import outside top-level (lazy imports)
+    "TD002",   # Missing author in TODO
+    "TD003",   # Missing issue link in TODO
+    "FIX002",  # Line contains TODO
+    "ERA001",  # Commented-out code
+    "ANN401",  # Use of Any (sometimes necessary)
+    # Type checking imports (many false positives)
+    "TC001",   # Move application imports to TYPE_CHECKING
+    "TC002",   # Move third-party imports to TYPE_CHECKING
+    "TC006",   # Quotes in cast expressions
+]
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ALL"]
+"scripts/*" = [
+    "ALL",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+# Use double quotes for strings.
+quote-style = "double"
+# Like Black, indent with spaces.
+indent-style = "space"
+

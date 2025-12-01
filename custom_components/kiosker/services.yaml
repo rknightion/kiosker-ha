@@ -1,0 +1,99 @@
+navigate_url:
+  name: Navigate to URL
+  description: Navigate the kiosk browser to a specific URL.
+  target:
+    device:
+      integration: kiosker
+  fields:
+    url:
+      name: URL
+      description: Target URL to open in the kiosk browser.
+      required: true
+      example: https://www.example.com
+      selector:
+        text:
+          type: url
+
+set_blackout:
+  name: Set blackout
+  description: Show or hide the blackout overlay and optionally customize its appearance.
+  target:
+    device:
+      integration: kiosker
+  fields:
+    visible:
+      name: Visible
+      description: Set to true to show the blackout overlay; false to hide it.
+      required: true
+      selector:
+        boolean: {}
+    text:
+      name: Text
+      description: Optional text to display on the blackout overlay.
+      required: false
+      selector:
+        text:
+          multiline: true
+    background:
+      name: Background color
+      description: Hex color code for the blackout background (e.g. #000000).
+      required: false
+      selector:
+        text: {}
+    foreground:
+      name: Foreground color
+      description: Hex color code for the text (e.g. #FFFFFF).
+      required: false
+      selector:
+        text: {}
+    icon:
+      name: Icon
+      description: Optional SF Symbol / icon name to display (e.g. wrench.and.screwdriver.fill).
+      required: false
+      selector:
+        text: {}
+    expire:
+      name: Expire (seconds)
+      description: Optional duration before the blackout automatically clears.
+      required: false
+      selector:
+        number:
+          mode: box
+          min: 0
+          unit_of_measurement: s
+
+set_screensaver:
+  name: Set screensaver
+  description: Enable or disable the screensaver and optionally set its visibility.
+  target:
+    device:
+      integration: kiosker
+  fields:
+    disabled:
+      name: Disabled
+      description: Disable (true) or enable (false) the screensaver.
+      required: true
+      selector:
+        boolean: {}
+    visible:
+      name: Visible
+      description: Optional visibility toggle. Leave empty to keep the current visibility.
+      required: false
+      selector:
+        boolean: {}
+
+set_start_url:
+  name: Set start URL
+  description: Update the kiosk start page URL used on launch or reset.
+  target:
+    device:
+      integration: kiosker
+  fields:
+    url:
+      name: URL
+      description: URL to set as the kiosk start page.
+      required: true
+      example: https://intranet.local
+      selector:
+        text:
+          type: url

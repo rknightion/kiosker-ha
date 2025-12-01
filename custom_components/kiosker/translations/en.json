@@ -1,0 +1,123 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect Kiosker",
+        "description": "Enter the base API URL (for example http://tablet-office:8081/api/v1) and the access token generated in the Kiosker app. The integration will validate the connection and fetch device details.",
+        "data": {
+          "name": "Name",
+          "base_url": "API base URL",
+          "access_token": "Access token"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Reauthenticate Kiosker",
+        "description": "Update the access token to restore the Kiosker connection.",
+        "data": {
+          "access_token": "Access token"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the Kiosker API. Check the URL, network, and that the API is enabled.",
+      "invalid_auth": "Authentication failed. Verify the access token.",
+      "unknown": "Unexpected error. Check Home Assistant logs."
+    },
+    "abort": {
+      "already_configured": "This kiosk is already configured.",
+      "reauth_successful": "Re-authentication completed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Kiosker options",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  },
+  "services": {
+    "navigate_url": {
+      "name": "Navigate to URL",
+      "description": "Navigate the kiosk browser to a specific URL.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "Optional: choose the Kiosker device to target. Required if you have multiple kiosks configured."
+        },
+        "url": {
+          "name": "URL",
+          "description": "Destination URL for the kiosk browser."
+        }
+      }
+    },
+    "set_blackout": {
+      "name": "Set blackout",
+      "description": "Show or hide the blackout overlay on the kiosk. You can optionally customize the text and colors.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "Optional: target a specific Kiosker device."
+        },
+        "visible": {
+          "name": "Visible",
+          "description": "Turn blackout on (true) or off (false)."
+        },
+        "text": {
+          "name": "Text",
+          "description": "Optional text to show on the blackout overlay."
+        },
+        "background": {
+          "name": "Background color",
+          "description": "Hex color for the blackout background (e.g. #000000)."
+        },
+        "foreground": {
+          "name": "Foreground color",
+          "description": "Hex color for the text (e.g. #FFFFFF)."
+        },
+        "icon": {
+          "name": "Icon",
+          "description": "Optional SF Symbol / icon name to display."
+        },
+        "expire": {
+          "name": "Expire (seconds)",
+          "description": "Optional duration before the blackout automatically clears."
+        }
+      }
+    },
+    "set_screensaver": {
+      "name": "Set screensaver",
+      "description": "Enable or disable the screensaver and optionally set its visibility.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "Optional: target a specific Kiosker device."
+        },
+        "disabled": {
+          "name": "Disabled",
+          "description": "Disable (true) or enable (false) the screensaver."
+        },
+        "visible": {
+          "name": "Visible",
+          "description": "Optional: force the screensaver visibility on or off."
+        }
+      }
+    },
+    "set_start_url": {
+      "name": "Set start URL",
+      "description": "Update the kiosk start page URL used on launch or reset.",
+      "fields": {
+        "device_id": {
+          "name": "Device",
+          "description": "Optional: target a specific Kiosker device."
+        },
+        "url": {
+          "name": "URL",
+          "description": "URL to set as the kiosk start page."
+        }
+      }
+    }
+  }
+}

@@ -80,12 +80,6 @@ SENSORS: tuple[KioskerSensorDescription, ...] = (
         value_fn=lambda data: data.status.app_version,
     ),
     KioskerSensorDescription(
-        key="app_name",
-        name="App Name",
-        icon="mdi:application-cog",
-        value_fn=lambda data: data.status.app_name,
-    ),
-    KioskerSensorDescription(
         key="os_version",
         name="OS Version",
         icon="mdi:apple-ios",

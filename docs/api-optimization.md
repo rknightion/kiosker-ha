@@ -9,9 +9,9 @@ Kiosker exposes a lightweight HTTP API, but rapid polling or unreliable networks
 
 ## Choose the right update interval
 
-- **Default**: 30 seconds is safe for most setups.
-- **Faster updates**: You can lower the interval to 5–15 seconds if you rely on motion/interaction timestamps. Watch CPU usage on both the tablet and Home Assistant.
-- **Multiple kiosks**: Stagger intervals across devices (for example 20s, 30s, 40s) to avoid bursts.
+- **Default**: 60 seconds is safe for most setups.
+- **Faster updates**: You can lower the interval to 10–30 seconds if you rely on motion/interaction timestamps. Watch CPU usage on both the tablet and Home Assistant.
+- **Multiple kiosks**: Stagger intervals across devices (for example 30s, 45s, 60s) to avoid bursts.
 
 Adjust the interval from the integration options dialog.
 

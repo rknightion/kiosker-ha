@@ -9,7 +9,7 @@ This guide walks through prerequisites, installing the integration, and completi
 
 ## Prerequisites
 
-- Home Assistant 2024.6 or newer.
+- Home Assistant 2025.8.0 or newer.
 - The **Kiosker** app installed on your iPad/iPhone with API access enabled.
 - The device reachable from Home Assistant on your local network (default API port: `8081`).
 - An **Access Token** generated in the Kiosker app.

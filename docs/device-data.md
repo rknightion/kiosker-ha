@@ -47,8 +47,9 @@ The integration polls the Kiosker API for three payloads on each update cycle:
 
 ## Polling cadence
 
-- **Default**: 30 seconds between polls.
-- **Minimum**: 5 seconds (enforced to protect the device and Home Assistant).
+- **Default**: 60 seconds between polls.
+- **Minimum**: 10 seconds (enforced to protect the device and Home Assistant).
+- **Maximum**: 3600 seconds (1 hour).
 - **Timeout**: 10 seconds per request.
 
 If the API returns an error or times out, the coordinator marks the update failed and retries on the next cycle.

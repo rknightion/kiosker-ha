@@ -127,3 +127,15 @@ class KioskerSensor(KioskerEntity, SensorEntity):
     def native_value(self) -> Any:
         """Return the sensor value."""
         return self.entity_description.value_fn(self.coordinator.data)
+
+    @property
+    def icon(self) -> str | None:
+        """Return a dynamic icon when appropriate."""
+        if self.entity_description.key == "battery_state":
+            level = self.coordinator.data.status.battery_level
+            charging = (
+                str(self.coordinator.data.status.battery_state).lower()
+                == "charging"
+            )
+            return icon_for_battery_level(level, charging=charging)
+        return super().icon

@@ -34,6 +34,13 @@ class KioskerEntity(CoordinatorEntity[KioskerData]):
             identifiers={(DOMAIN, status.device_id)},
             name=name,
             manufacturer=MANUFACTURER,
-            model=status.model,
-            sw_version=status.app_version,
+            model=f"{status.model} ({status.app_name})"
+            if status.app_name
+            else status.model,
+            sw_version=(
+                f"{status.app_name} {status.app_version}"
+                if status.app_name
+                else status.app_version
+            ),
+            serial_number=status.device_id,
         )

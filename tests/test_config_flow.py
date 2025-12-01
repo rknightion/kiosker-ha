@@ -8,6 +8,7 @@ from homeassistant import config_entries
 from homeassistant.const import CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
 from homeassistant.util import dt as dt_util
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.kiosker.api import DeviceStatus
 from custom_components.kiosker.const import (
@@ -24,7 +25,7 @@ from custom_components.kiosker.exceptions import (
 )
 
 
-async def test_user_flow_creates_entry(hass) -> None:
+async def test_user_flow_creates_entry(hass, enable_custom_integrations) -> None:
     """Config flow creates an entry when validation succeeds."""
     user_input = {
         CONF_NAME: "Front Tablet",
@@ -48,7 +49,7 @@ async def test_user_flow_creates_entry(hass) -> None:
     with patch(
         "custom_components.kiosker.config_flow._validate_input",
         return_value=status,
-    ):
+    ), patch("custom_components.kiosker.KioskerApiClient"):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,
             context={"source": config_entries.SOURCE_USER},
@@ -73,7 +74,7 @@ async def test_user_flow_creates_entry(hass) -> None:
     ],
 )
 async def test_user_flow_errors(
-    hass, exception: Exception, error: str
+    hass, enable_custom_integrations, exception: Exception, error: str
 ) -> None:
     """Config flow maps API errors to form errors."""
     user_input = {
@@ -94,7 +95,9 @@ async def test_user_flow_errors(
     assert result["errors"]["base"] == error
 
 
-async def test_reauth_flow_updates_entry(hass, mock_config_entry) -> None:
+async def test_reauth_flow_updates_entry(
+    hass, enable_custom_integrations, mock_config_entry
+) -> None:
     """Reauth flow stores the new token and reloads the entry."""
     status = DeviceStatus(
         device_id="kiosk-123",
@@ -115,6 +118,7 @@ async def test_reauth_flow_updates_entry(hass, mock_config_entry) -> None:
             "custom_components.kiosker.config_flow._validate_input",
             return_value=status,
         ),
+        patch("custom_components.kiosker.KioskerApiClient"),
         patch.object(
             hass.config_entries, "async_reload", AsyncMock()
         ) as reload_mock,
@@ -138,10 +142,18 @@ async def test_reauth_flow_updates_entry(hass, mock_config_entry) -> None:
     reload_mock.assert_awaited_once_with(mock_config_entry.entry_id)
 
 
-async def test_options_flow_accepts_scan_interval(hass, mock_config_entry) -> None:
+async def test_options_flow_accepts_scan_interval(
+    hass, enable_custom_integrations
+) -> None:
     """Options flow stores a valid scan interval and clamps defaults."""
-    mock_config_entry.options = {CONF_SCAN_INTERVAL: 999999}
-    result = await hass.config_entries.options.async_init(mock_config_entry.entry_id)
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        title="Office Tablet",
+        data={CONF_BASE_URL: "http://example.com/api/v1", CONF_ACCESS_TOKEN: "token"},
+        options={CONF_SCAN_INTERVAL: 999999},
+    )
+    entry.add_to_hass(hass)
+    result = await hass.config_entries.options.async_init(entry.entry_id)
     assert result["type"] == FlowResultType.FORM
 
     result2 = await hass.config_entries.options.async_configure(

@@ -155,7 +155,7 @@ def setup_integration(
         entry.add_to_hass(hass)
         client_to_use = client or mock_kiosker_client
         with patch(
-            "custom_components.kiosker.__init__.KioskerApiClient",
+            "custom_components.kiosker.KioskerApiClient",
             return_value=client_to_use,
         ):
             await hass.config_entries.async_setup(entry.entry_id)

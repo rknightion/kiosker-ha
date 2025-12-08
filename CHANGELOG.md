@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3](https://github.com/rknightion/kiosker-ha/compare/v1.1.2...v1.1.3) (2025-12-08)
+
+
+### Documentation
+
+* enhance SEO with comprehensive meta tags and structured data ([67911fe](https://github.com/rknightion/kiosker-ha/commit/67911fedfb725573eae9f0c2f28e7cb34d47a65b))
+
+
+### Miscellaneous Chores
+
+* **deps:** pin dependencies ([32a1408](https://github.com/rknightion/kiosker-ha/commit/32a14085343e5b4d034f2957bdffe1e0c7578b32))
+* **deps:** pin dependencies (main) ([4c6ac4e](https://github.com/rknightion/kiosker-ha/commit/4c6ac4e05a702aae9c2754a5641a0e049b3ce5de))
+* **deps:** update dependencies and refactor service configurations ([58ba1be](https://github.com/rknightion/kiosker-ha/commit/58ba1be3e51108888afde1650e71df76a190956e))
+* update ruff version and format manifest file ([4b38fe2](https://github.com/rknightion/kiosker-ha/commit/4b38fe220dad55f9ace4d0e329a73a7948320e7e))
+
 ## [1.1.2](https://github.com/rknightion/kiosker-ha/compare/v1.1.1...v1.1.2) (2025-12-01)
 
 

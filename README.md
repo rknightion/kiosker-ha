@@ -5,7 +5,7 @@
 
   [![GitHub Release](https://img.shields.io/github/v/release/rknightion/kiosker-ha?style=flat-square)](https://github.com/rknightion/kiosker-ha/releases)
   [![License](https://img.shields.io/github/license/rknightion/kiosker-ha?style=flat-square)](LICENSE)
-  [![HACS](https://img.shields.io/badge/HACS-Custom-orange.svg?style=flat-square)](https://hacs.xyz)
+  [![HACS](https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square)](https://hacs.xyz)
   [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.8.0+-blue.svg?style=flat-square)](https://www.home-assistant.io)
 </div>
 
@@ -25,11 +25,12 @@ Keep your wall-mounted dashboards and tablets in sync with Home Assistant. This 
 
 ### HACS (Recommended)
 
-1. Open **HACS** > **Integrations** > **...** > **Custom repositories**
-2. Add `https://github.com/rknightion/kiosker-ha` with category **Integration**
-3. Find **Kiosker** in HACS and click **Install**
-4. Restart Home Assistant
-5. Add the integration via **Settings** > **Devices & Services**
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rknightion&repository=kiosker-ha&category=integration)
+
+1. In Home Assistant, open **HACS → Integrations → Explore & Download**.
+2. Search for **Kiosker** in the default list and click **Download**.
+3. Restart Home Assistant when prompted.
+4. Add the integration via **Settings → Devices & Services**.
 
 ### Manual Installation
 

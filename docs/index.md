@@ -22,7 +22,7 @@ Keep your wall-mounted dashboards and tablets in sync with Home Assistant. This 
 
 ## Quick start
 
-1. Install the integration via HACS (recommended) or manually.
+1. Install the integration via HACS from the default integrations list (recommended) or manually.
 2. In the Kiosker app, enable the API and copy the **Base URL** and **Access Token**.
 3. In Home Assistant, add the **Kiosker** integration and paste the values.
 4. Use the provided buttons and services to control the kiosk; sensors and binary sensors update automatically.

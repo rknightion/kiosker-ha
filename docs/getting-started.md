@@ -27,7 +27,7 @@ Keep the Base URL and token handy—you will paste them into Home Assistant duri
 
 ## Install the integration
 
-- **HACS**: Add the repository `https://github.com/rknightion/kiosker-ha` as an Integration, install, then restart Home Assistant.
+- **HACS**: In **HACS → Integrations → Explore & Download**, search for **Kiosker** in the default list, install it, then restart Home Assistant.
 - **Manual**: Copy `custom_components/kiosker` into your Home Assistant `custom_components` directory and restart.
 
 See [Installation](installation.md) for detailed steps.

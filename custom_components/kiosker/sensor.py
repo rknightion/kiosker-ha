@@ -20,12 +20,13 @@ from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level
 
 try:
+    # type: ignore[attr-defined] -- some HA versions/stubs lack UnitOfIlluminance
     from homeassistant.const import UnitOfIlluminance
 except ImportError:
     UnitOfIlluminance = None
 
 if UnitOfIlluminance:
-    ILLUMINANCE_UNIT = UnitOfIlluminance.LUX
+    ILLUMINANCE_UNIT: str = UnitOfIlluminance.LUX
 else:
     try:
         from homeassistant.const import LIGHT_LUX

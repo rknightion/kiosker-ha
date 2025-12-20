@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.4](https://github.com/rknightion/kiosker-ha/compare/v1.1.3...v1.1.4) (2025-12-20)
+
+
+### Documentation
+
+* update installation instructions to reference HACS default repository ([2e532f4](https://github.com/rknightion/kiosker-ha/commit/2e532f4c4eb35f459800abe9190eabe32628503a))
+
+
+### Miscellaneous Chores
+
+* **config:** migrate config renovate.json ([b9bb82b](https://github.com/rknightion/kiosker-ha/commit/b9bb82bc768f613a2e02cdb8ef34e8099de82136))
+* **config:** migrate Renovate config ([aff5cf8](https://github.com/rknightion/kiosker-ha/commit/aff5cf8c4b3d66a8303dfea0633f9e60614f8be6))
+* **deps:** update actions/checkout action ([#26](https://github.com/rknightion/kiosker-ha/issues/26)) ([8bed7f3](https://github.com/rknightion/kiosker-ha/commit/8bed7f378c6c71675be15184753c8f5a34905ed9))
+* **deps:** update actions/stale action to v10.1.1 ([#16](https://github.com/rknightion/kiosker-ha/issues/16)) ([35723e9](https://github.com/rknightion/kiosker-ha/commit/35723e92b68eefb4020ebcd2d11daa22443bcd2d))
+* **deps:** update actions/upload-artifact action to v6 ([#30](https://github.com/rknightion/kiosker-ha/issues/30)) ([8e17a75](https://github.com/rknightion/kiosker-ha/commit/8e17a75063dbd1d4b365246d018c39e67fe15a0c))
+* **deps:** update anthropics/claude-code-action digest to 7145c3e ([#34](https://github.com/rknightion/kiosker-ha/issues/34)) ([7d73d7c](https://github.com/rknightion/kiosker-ha/commit/7d73d7c97a001055630da3d43fda721053436683))
+* **deps:** update anthropics/claude-code-action digest to f0c8eb2 ([#18](https://github.com/rknightion/kiosker-ha/issues/18)) ([ebc9640](https://github.com/rknightion/kiosker-ha/commit/ebc96400ef9b82eab8cdd6b99aae58fa13fb59f6))
+* **deps:** update astral-sh/setup-uv action to v7.1.5 ([#17](https://github.com/rknightion/kiosker-ha/issues/17)) ([c015ace](https://github.com/rknightion/kiosker-ha/commit/c015ace3041b58f140a054423e65454bd01921d6))
+* **deps:** update astral-sh/setup-uv action to v7.1.6 ([#31](https://github.com/rknightion/kiosker-ha/issues/31)) ([db1733a](https://github.com/rknightion/kiosker-ha/commit/db1733a4546e72e05c154690d9e45347fa1642d1))
+* **deps:** update codecov/codecov-action action to v5.5.2 ([#19](https://github.com/rknightion/kiosker-ha/issues/19)) ([faa7934](https://github.com/rknightion/kiosker-ha/commit/faa7934428bd754de3786d5cc1ebf7dfc04d436b))
+* **deps:** update dependency pytest-homeassistant-custom-component to v0.13.300 ([68551ac](https://github.com/rknightion/kiosker-ha/commit/68551ac85fe4756af236bc828daa8587f8b3fcf1))
+* **deps:** update dependency pytest-homeassistant-custom-component to v0.13.300 ([89e1e34](https://github.com/rknightion/kiosker-ha/commit/89e1e34ec52c556203ba0c867d5537916d694415))
+* **deps:** update dependency ruff to v0.14.10 ([#35](https://github.com/rknightion/kiosker-ha/issues/35)) ([e8c80a2](https://github.com/rknightion/kiosker-ha/commit/e8c80a2bcd18de2190eb0fb5b39e61070497bf49))
+* **deps:** update dependency ruff to v0.14.8 ([#21](https://github.com/rknightion/kiosker-ha/issues/21)) ([d84eccc](https://github.com/rknightion/kiosker-ha/commit/d84eccceef54a5a3f531cae3ff30dfc731b8afb0))
+* **deps:** update dependency ruff to v0.14.9 ([#27](https://github.com/rknightion/kiosker-ha/issues/27)) ([afb9eb7](https://github.com/rknightion/kiosker-ha/commit/afb9eb769b1478d54ebb02428787d28d36225bb2))
+* **deps:** update github/codeql-action action to v4.31.7 ([#22](https://github.com/rknightion/kiosker-ha/issues/22)) ([29f9358](https://github.com/rknightion/kiosker-ha/commit/29f935825b7a83af66bffeaa1855b93eac28bb91))
+* **deps:** update github/codeql-action action to v4.31.8 ([#29](https://github.com/rknightion/kiosker-ha/issues/29)) ([73a23bf](https://github.com/rknightion/kiosker-ha/commit/73a23bf292b778c8981ef1bcde5e3980ea7f3390))
+* **deps:** update github/codeql-action action to v4.31.9 ([#33](https://github.com/rknightion/kiosker-ha/issues/33)) ([0207b9b](https://github.com/rknightion/kiosker-ha/commit/0207b9b8da346a38624f707de7829ebaae320798))
+* **deps:** update github/codeql-action digest to 1b168cd ([#28](https://github.com/rknightion/kiosker-ha/issues/28)) ([893b574](https://github.com/rknightion/kiosker-ha/commit/893b57419d83c9917b0fab25086f7eb68068c5e6))
+* **deps:** update github/codeql-action digest to 5d4e8d1 ([#32](https://github.com/rknightion/kiosker-ha/issues/32)) ([784a630](https://github.com/rknightion/kiosker-ha/commit/784a6300e09367b950e8967b81a81b2a01550880))
+* **deps:** update github/codeql-action digest to cf1bb45 ([#13](https://github.com/rknightion/kiosker-ha/issues/13)) ([f328c9e](https://github.com/rknightion/kiosker-ha/commit/f328c9e7dd84ed1afa4dfaeb76e87a57af362c9b))
+* **deps:** update hacs/action digest to 6f81caf ([#14](https://github.com/rknightion/kiosker-ha/issues/14)) ([db9e134](https://github.com/rknightion/kiosker-ha/commit/db9e13477cef6c18e3c6dad3d03922a0eeb05fb7))
+* **deps:** update home-assistant/actions digest to 87c064c ([#15](https://github.com/rknightion/kiosker-ha/issues/15)) ([23dc1c6](https://github.com/rknightion/kiosker-ha/commit/23dc1c6b4a8a76041333defdfa7dd616ba83e3d5))
+* **deps:** update step-security/harden-runner action to v2.14.0 ([#25](https://github.com/rknightion/kiosker-ha/issues/25)) ([2468f69](https://github.com/rknightion/kiosker-ha/commit/2468f69acbbff75c2a199210ed6af20cbcbeb175))
+* remove claude workflow and format manifest ([acc075c](https://github.com/rknightion/kiosker-ha/commit/acc075c6a8a961f410d2eb578f56d713a65ca30c))
+* simplify project structure and update dependencies ([621b882](https://github.com/rknightion/kiosker-ha/commit/621b882aff8198150342b35328269cb81f20d97f))
+
 ## [1.1.3](https://github.com/rknightion/kiosker-ha/compare/v1.1.2...v1.1.3) (2025-12-08)
 
 

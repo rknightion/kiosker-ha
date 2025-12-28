@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 import logging
-from typing import cast
+from ipaddress import IPv4Address, IPv6Address
+from typing import Any, cast
 
 import voluptuous as vol
 from homeassistant import config_entries
@@ -11,6 +12,8 @@ from homeassistant.config_entries import ConfigFlowResult
 from homeassistant.const import CONF_NAME
 from homeassistant.core import HomeAssistant
 from homeassistant.data_entry_flow import FlowResult
+from homeassistant.helpers import selector
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 
 from .api import KioskerApiClient
 from .const import (
@@ -31,6 +34,59 @@ from .exceptions import (
 
 _LOGGER = logging.getLogger(__name__)
 
+_ACCESS_TOKEN_SELECTOR = selector.TextSelector(
+    selector.TextSelectorConfig(type=selector.TextSelectorType.TEXT)
+)
+_DEFAULT_API_PORT = 8081
+
+
+def _decode_zeroconf_value(value: Any) -> str:
+    """Normalize zeroconf property values into strings."""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", "replace")
+    return str(value)
+
+
+def _normalize_zeroconf_properties(
+    properties: dict[str, Any],
+) -> dict[str, str]:
+    """Return lowercase string keys with decoded string values."""
+    normalized: dict[str, str] = {}
+    for key, value in properties.items():
+        key_str = _decode_zeroconf_value(key).lower()
+        normalized[key_str] = _decode_zeroconf_value(value)
+    return normalized
+
+
+def _name_from_hostname(hostname: str) -> str:
+    """Convert a hostname to a user-friendly name."""
+    name = hostname.rstrip(".")
+    if name.endswith(".local"):
+        name = name[: -len(".local")]
+    return name
+
+
+def _select_ip_address(
+    discovery_info: ZeroconfServiceInfo,
+) -> IPv4Address | IPv6Address:
+    """Prefer IPv4 when available; fall back to the primary zeroconf address."""
+    for address in discovery_info.ip_addresses:
+        if (
+            isinstance(address, IPv4Address)
+            and not address.is_link_local
+            and not address.is_unspecified
+        ):
+            return address
+    return discovery_info.ip_address
+
+
+def _build_base_url(ip_address: IPv4Address | IPv6Address, port: int | None) -> str:
+    """Build the Kiosker base URL from zeroconf details."""
+    host = str(ip_address)
+    if isinstance(ip_address, IPv6Address):
+        host = f"[{host}]"
+    return f"http://{host}:{port or _DEFAULT_API_PORT}/api/v1"
+
 
 async def _validate_input(hass: HomeAssistant, data: dict[str, str]):
     """Validate the user input allows us to connect."""
@@ -47,6 +103,9 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     VERSION = 1
     _reauth_entry: config_entries.ConfigEntry | None = None
+    _discovered_base_url: str | None = None
+    _discovered_name: str | None = None
+    _discovered_uuid: str | None = None
 
     async def async_step_user(
         self, user_input: dict[str, str] | None = None
@@ -55,7 +114,8 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         errors: dict[str, str] = {}
 
         if user_input is not None:
-            user_input[CONF_BASE_URL] = user_input[CONF_BASE_URL].rstrip("/")
+            user_input[CONF_BASE_URL] = user_input[CONF_BASE_URL].strip().rstrip("/")
+            user_input[CONF_ACCESS_TOKEN] = user_input[CONF_ACCESS_TOKEN].strip()
             try:
                 status = await _validate_input(self.hass, user_input)
             except KioskerInvalidAuth:
@@ -101,9 +161,10 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             {
                 vol.Optional(CONF_NAME): str,
                 vol.Required(
-                    CONF_BASE_URL, default="http://tablet-office:8081/api/v1"
+                    CONF_BASE_URL,
+                    description={"suggested_value": "http://ipad-ip:8081/api/v1"},
                 ): str,
-                vol.Required(CONF_ACCESS_TOKEN): str,
+                vol.Required(CONF_ACCESS_TOKEN): _ACCESS_TOKEN_SELECTOR,
             }
         )
 
@@ -111,6 +172,97 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             step_id="user",
             data_schema=data_schema,
             errors=errors,
+        )
+
+    async def async_step_zeroconf(
+        self, discovery_info: ZeroconfServiceInfo
+    ) -> ConfigFlowResult:
+        """Handle zeroconf discovery."""
+        properties = _normalize_zeroconf_properties(discovery_info.properties)
+        uuid = properties.get("uuid")
+        if not uuid:
+            _LOGGER.error(
+                "Kiosker zeroconf discovery missing uuid for %s",
+                discovery_info.name,
+            )
+            return self.async_abort(reason="missing_uuid")
+
+        self._discovered_uuid = uuid
+        await self.async_set_unique_id(uuid)
+
+        ip_address = _select_ip_address(discovery_info)
+        base_url = _build_base_url(ip_address, discovery_info.port).rstrip("/")
+        self._discovered_base_url = base_url
+
+        name = _name_from_hostname(discovery_info.hostname)
+        self._discovered_name = name or properties.get("app") or uuid
+
+        self.context["title_placeholders"] = {
+            "name": self._discovered_name or DEFAULT_NAME
+        }
+
+        self._abort_if_unique_id_configured(updates={CONF_BASE_URL: base_url})
+
+        return await self.async_step_zeroconf_confirm()
+
+    async def async_step_zeroconf_confirm(
+        self, user_input: dict[str, str] | None = None
+    ) -> ConfigFlowResult:
+        """Confirm zeroconf discovery and collect the access token."""
+        if not self._discovered_base_url or not self._discovered_uuid:
+            _LOGGER.error("Kiosker zeroconf confirm missing discovery context")
+            return self.async_abort(reason="missing_discovery")
+
+        errors: dict[str, str] = {}
+        if user_input is not None:
+            access_token = user_input[CONF_ACCESS_TOKEN].strip()
+            data = {
+                CONF_BASE_URL: self._discovered_base_url,
+                CONF_ACCESS_TOKEN: access_token,
+            }
+            try:
+                status = await _validate_input(self.hass, data)
+            except KioskerInvalidAuth:
+                _LOGGER.error(
+                    "Kiosker zeroconf config flow: invalid auth for %s",
+                    self._discovered_base_url,
+                )
+                errors["base"] = "invalid_auth"
+            except KioskerConnectionError as err:
+                _LOGGER.error(
+                    "Kiosker zeroconf config flow: cannot connect to %s (%s)",
+                    self._discovered_base_url,
+                    err,
+                )
+                errors["base"] = "cannot_connect"
+            except KioskerUnexpectedResponse as err:
+                _LOGGER.error(
+                    "Kiosker zeroconf config flow: unexpected response for %s (%s)",
+                    self._discovered_base_url,
+                    err,
+                )
+                errors["base"] = "unknown"
+            else:
+                self._abort_if_unique_id_configured()
+
+                title = (
+                    self._discovered_name
+                    or status.app_name
+                    or f"{DEFAULT_NAME} {status.device_id}"
+                )
+                entry_data = {
+                    CONF_BASE_URL: self._discovered_base_url,
+                    CONF_ACCESS_TOKEN: access_token,
+                }
+                return self.async_create_entry(title=title, data=entry_data)
+
+        return self.async_show_form(
+            step_id="zeroconf_confirm",
+            data_schema=vol.Schema(
+                {vol.Required(CONF_ACCESS_TOKEN): _ACCESS_TOKEN_SELECTOR}
+            ),
+            errors=errors,
+            description_placeholders={"name": self._discovered_name or DEFAULT_NAME},
         )
 
     async def async_step_reauth(
@@ -166,7 +318,9 @@ class KioskerConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id="reauth_confirm",
-            data_schema=vol.Schema({vol.Required(CONF_ACCESS_TOKEN): str}),
+            data_schema=vol.Schema(
+                {vol.Required(CONF_ACCESS_TOKEN): _ACCESS_TOKEN_SELECTOR}
+            ),
             errors=errors,
         )
 

@@ -6,6 +6,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from typing import Any
 
+from homeassistant import const as ha_const
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     SensorEntity,
@@ -19,24 +20,14 @@ from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.icon import icon_for_battery_level
 
-try:
-    # type: ignore[attr-defined] -- some HA versions/stubs lack UnitOfIlluminance
-    from homeassistant.const import UnitOfIlluminance
-except ImportError:
-    UnitOfIlluminance = None
-
-if UnitOfIlluminance:
-    ILLUMINANCE_UNIT: str = UnitOfIlluminance.LUX
-else:
-    try:
-        from homeassistant.const import LIGHT_LUX
-    except ImportError:  # pragma: no cover - fallback for very new/old HA builds
-        ILLUMINANCE_UNIT = "lx"
-    else:
-        ILLUMINANCE_UNIT = LIGHT_LUX
-
 from .coordinator import KioskerData, KioskerDataUpdateCoordinator
 from .entity import KioskerEntity
+
+_UNIT_OF_ILLUMINANCE = getattr(ha_const, "UnitOfIlluminance", None)
+if _UNIT_OF_ILLUMINANCE is not None:
+    ILLUMINANCE_UNIT: str = _UNIT_OF_ILLUMINANCE.LUX
+else:
+    ILLUMINANCE_UNIT = getattr(ha_const, "LIGHT_LUX", "lx")
 
 
 @dataclass(frozen=True)

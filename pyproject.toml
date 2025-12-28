@@ -1,6 +1,6 @@
 [project]
 name = "kiosker-ha"
-version = "1.1.4"
+version = "1.2.0"
 description = "Kiosker integration for Home Assistant"
 authors = [
     {name = "Rob Knight", email = "rob@example.com"}

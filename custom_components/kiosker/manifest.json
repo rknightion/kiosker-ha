@@ -1,8 +1,12 @@
 {
   "domain": "kiosker",
   "name": "Kiosker",
-  "after_dependencies": ["recorder"],
-  "codeowners": ["@rknightion"],
+  "after_dependencies": [
+    "recorder"
+  ],
+  "codeowners": [
+    "@rknightion"
+  ],
   "config_flow": true,
   "zeroconf": [
     {
@@ -13,8 +17,13 @@
   "integration_type": "hub",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/rknightion/kiosker-ha/issues",
-  "loggers": ["aiohttp", "custom_components.kiosker"],
+  "loggers": [
+    "aiohttp",
+    "custom_components.kiosker"
+  ],
   "quality_scale": "silver",
-  "requirements": ["aiohttp>=3.12.1"],
-  "version": "1.1.4"
+  "requirements": [
+    "aiohttp>=3.12.1"
+  ],
+  "version": "1.2.0"
 }

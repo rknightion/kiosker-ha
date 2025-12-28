@@ -7,7 +7,16 @@ description: Common questions and troubleshooting steps for the Kiosker integrat
 
 ## Where do I find the Base URL and Access Token?
 
-In the Kiosker app, open **Settings → Remote Admin / API**. Enable the API, copy the **Base URL** (includes `/api/v1`) and generate/copy the **Access Token**.
+In the Kiosker app, open **Settings > Remote Admin / API**. Enable the API and generate/copy
+the **Access Token**. The **Base URL** (includes `/api/v1`) is shown on the same screen for
+manual setup or troubleshooting. The REST API requires **Kiosker Pro**.
+
+## The Base URL is missing in the Kiosker app
+
+- Confirm you are on **Kiosker Pro** (the REST API is Pro-only).
+- Update Kiosker to the latest version, then revisit **Settings > Remote Admin / API**.
+- If needed, construct the URL manually using the device IP address:
+  `http://IP_ADDRESS:8081/api/v1`.
 
 ## The setup flow says "Cannot connect"
 
@@ -18,6 +27,11 @@ In the Kiosker app, open **Settings → Remote Admin / API**. Enable the API, co
 ## The setup flow says "Invalid auth"
 
 Regenerate the token in the Kiosker app, paste it into the re-auth dialog, and submit again.
+
+## The setup flow keeps using the old Base URL after pasting
+
+Home Assistant config flows can miss a pasted value if the field does not emit a change
+event. Click or tap out of each field after pasting, then submit again.
 
 ## Services say I must provide a device_id
 

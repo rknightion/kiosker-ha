@@ -42,9 +42,9 @@ Keep your wall-mounted dashboards and tablets in sync with Home Assistant. This 
 ## Quick Start
 
 1. In the **Kiosker app**, enable the API under **Settings** > **Remote Admin / API**
-2. Copy the **Base URL** and **Access Token** from the app
+2. Copy the **Access Token** (keep the **Base URL** handy if you need manual setup)
 3. In Home Assistant, go to **Settings** > **Devices & Services** > **Add Integration**
-4. Search for **Kiosker** and enter your credentials
+4. Search for **Kiosker** and enter your credentials (auto-discovered devices only ask for the token)
 5. Use the provided buttons and services to control your kiosk
 
 ## Documentation

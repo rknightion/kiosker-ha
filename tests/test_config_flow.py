@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 from datetime import timedelta
+from ipaddress import IPv4Address, IPv6Address
 from unittest.mock import AsyncMock, patch
 
 import pytest
 from homeassistant import config_entries
 from homeassistant.const import CONF_NAME
 from homeassistant.data_entry_flow import FlowResultType
+from homeassistant.helpers.service_info.zeroconf import ZeroconfServiceInfo
 from homeassistant.util import dt as dt_util
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
@@ -23,6 +25,34 @@ from custom_components.kiosker.exceptions import (
     KioskerInvalidAuth,
     KioskerUnexpectedResponse,
 )
+
+
+def _make_zeroconf_info(
+    *,
+    hostname: str = "tablet-office.local.",
+    name: str = "8681F678._kiosker._tcp.local.",
+    uuid: str = "8681F678-F197-404E-B22D-DBA9AB60B326",
+    ip_address: IPv4Address | IPv6Address | None = None,
+    ip_addresses: list[IPv4Address | IPv6Address] | None = None,
+    port: int | None = 8081,
+) -> ZeroconfServiceInfo:
+    if ip_address is None:
+        ip_address = IPv4Address("10.0.50.7")
+    if ip_addresses is None:
+        ip_addresses = [ip_address]
+    return ZeroconfServiceInfo(
+        ip_address=ip_address,
+        ip_addresses=ip_addresses,
+        port=port,
+        hostname=hostname,
+        type="_kiosker._tcp.local.",
+        name=name,
+        properties={
+            "app": "Kiosker Pro",
+            "uuid": uuid,
+            "version": "25.10.1 (267)",
+        },
+    )
 
 
 async def test_user_flow_creates_entry(hass, enable_custom_integrations) -> None:
@@ -63,6 +93,127 @@ async def test_user_flow_creates_entry(hass, enable_custom_integrations) -> None
         CONF_ACCESS_TOKEN: "abc123",
         CONF_NAME: "Front Tablet",
     }
+
+
+async def test_zeroconf_flow_creates_entry(
+    hass, enable_custom_integrations
+) -> None:
+    """Zeroconf flow creates an entry and prefers IPv4 addresses."""
+    uuid = "8681F678-F197-404E-B22D-DBA9AB60B326"
+    discovery_info = _make_zeroconf_info(
+        ip_address=IPv6Address("fd6b:d9cd:7613:4c33:cba:2cf2:c6b9:b300"),
+        ip_addresses=[
+            IPv6Address("fd6b:d9cd:7613:4c33:cba:2cf2:c6b9:b300"),
+            IPv4Address("10.0.50.7"),
+        ],
+        uuid=uuid,
+    )
+    status = DeviceStatus(
+        device_id=uuid,
+        app_version="25.10.1",
+        app_name="Kiosker Pro",
+        os_version="iOS 17",
+        model="iPad",
+        date=dt_util.utcnow(),
+        ambient_light=None,
+        battery_level=None,
+        battery_state=None,
+        last_interaction=None,
+        last_motion=None,
+    )
+
+    with patch(
+        "custom_components.kiosker.config_flow._validate_input",
+        return_value=status,
+    ), patch("custom_components.kiosker.KioskerApiClient"):
+        result = await hass.config_entries.flow.async_init(
+            DOMAIN,
+            context={"source": config_entries.SOURCE_ZEROCONF},
+            data=discovery_info,
+        )
+        assert result["type"] == FlowResultType.FORM
+        assert result["step_id"] == "zeroconf_confirm"
+
+        result2 = await hass.config_entries.flow.async_configure(
+            result["flow_id"],
+            {CONF_ACCESS_TOKEN: "abc123"},
+        )
+
+    assert result2["type"] == FlowResultType.CREATE_ENTRY
+    assert result2["title"] == "tablet-office"
+    assert result2["data"] == {
+        CONF_BASE_URL: "http://10.0.50.7:8081/api/v1",
+        CONF_ACCESS_TOKEN: "abc123",
+    }
+
+
+async def test_zeroconf_flow_updates_existing_entry(
+    hass, enable_custom_integrations
+) -> None:
+    """Zeroconf rediscovery updates the stored base URL."""
+    uuid = "35147876-907B-4BBF-AA0A-7D9A0741C9B7"
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        title="Tablet Lounge",
+        data={
+            CONF_BASE_URL: "http://10.0.50.150:8081/api/v1",
+            CONF_ACCESS_TOKEN: "token",
+        },
+        unique_id=uuid,
+    )
+    entry.add_to_hass(hass)
+
+    discovery_info = _make_zeroconf_info(
+        hostname="tablet-lounge.local.",
+        name="35147876._kiosker._tcp.local.",
+        uuid=uuid,
+        ip_address=IPv4Address("10.0.50.154"),
+        ip_addresses=[IPv4Address("10.0.50.154")],
+    )
+
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN,
+        context={"source": config_entries.SOURCE_ZEROCONF},
+        data=discovery_info,
+    )
+
+    assert result["type"] == FlowResultType.ABORT
+    assert result["reason"] == "already_configured"
+    assert entry.data[CONF_BASE_URL] == "http://10.0.50.154:8081/api/v1"
+
+
+@pytest.mark.parametrize(
+    ("exception", "error"),
+    [
+        (KioskerInvalidAuth(), "invalid_auth"),
+        (KioskerConnectionError("boom"), "cannot_connect"),
+        (KioskerUnexpectedResponse("odd"), "unknown"),
+    ],
+)
+async def test_zeroconf_flow_errors(
+    hass, enable_custom_integrations, exception: Exception, error: str
+) -> None:
+    """Zeroconf flow maps API errors to form errors."""
+    discovery_info = _make_zeroconf_info()
+
+    with patch(
+        "custom_components.kiosker.config_flow._validate_input",
+        side_effect=exception,
+    ):
+        result = await hass.config_entries.flow.async_init(
+            DOMAIN,
+            context={"source": config_entries.SOURCE_ZEROCONF},
+            data=discovery_info,
+        )
+        assert result["type"] == FlowResultType.FORM
+
+        result2 = await hass.config_entries.flow.async_configure(
+            result["flow_id"],
+            {CONF_ACCESS_TOKEN: "abc123"},
+        )
+
+    assert result2["type"] == FlowResultType.FORM
+    assert result2["errors"]["base"] == error
 
 
 @pytest.mark.parametrize(

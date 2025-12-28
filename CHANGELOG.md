@@ -5,6 +5,43 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/rknightion/kiosker-ha/compare/v1.1.4...v1.2.0) (2025-12-28)
+
+
+### Features
+
+* **config:** add zeroconf auto-discovery support ([9e95412](https://github.com/rknightion/kiosker-ha/commit/9e95412d19f8dd0ef3cbbbbc5d3ff462d3fc0e5f))
+* **i18n:** add zeroconf discovery translations ([a89be37](https://github.com/rknightion/kiosker-ha/commit/a89be37114c48dcb9c4db4102f5ba00fef9af483))
+
+
+### Documentation
+
+* add auto-generated entity reference and dev guidelines ([00b4706](https://github.com/rknightion/kiosker-ha/commit/00b470682a9a83e200802731b4a222f10a781680))
+* remove custom main template override ([18b8ee6](https://github.com/rknightion/kiosker-ha/commit/18b8ee6a3e9748227896c4e31ed42ba21810166f))
+* update for zeroconf auto-discovery ([eb950d9](https://github.com/rknightion/kiosker-ha/commit/eb950d997f33441fdc1b6ee847e373ca11ee1850))
+
+
+### Miscellaneous Chores
+
+* **deps:** lock file maintenance ([#37](https://github.com/rknightion/kiosker-ha/issues/37)) ([ed84446](https://github.com/rknightion/kiosker-ha/commit/ed84446c316126f80930819d2b8404a543807555))
+* **deps:** lock file maintenance ([#38](https://github.com/rknightion/kiosker-ha/issues/38)) ([b5b0e3f](https://github.com/rknightion/kiosker-ha/commit/b5b0e3f8846850bb0dc82a9c2217b545b6f58954))
+* doc ([d46f94a](https://github.com/rknightion/kiosker-ha/commit/d46f94ad2cfa7f123abb5a6d672ace647f90174d))
+* docfix ([82be394](https://github.com/rknightion/kiosker-ha/commit/82be39463471e70f11d1fd50cf0c3b4f64a20d65))
+* docs ([89cec17](https://github.com/rknightion/kiosker-ha/commit/89cec17940916292424b46012cf568a5145f26f0))
+* fix docbuild ([3da1256](https://github.com/rknightion/kiosker-ha/commit/3da1256addd2ea097d605775bdcf82d7cce5f1a6))
+* update pre-commit tool versions ([a746ca1](https://github.com/rknightion/kiosker-ha/commit/a746ca1e73c641bdbfaa4498fcad47472184f164))
+
+
+### Code Refactoring
+
+* **docs:** improve meta tag handling ([2ef8f14](https://github.com/rknightion/kiosker-ha/commit/2ef8f1482ee1ce623fda9a234c7ad866c1db94d6))
+* improve sensor unit compatibility ([70edf04](https://github.com/rknightion/kiosker-ha/commit/70edf04baf130574978c7dde2933346fb9c45cc3))
+
+
+### Build System
+
+* migrate from mkdocs.yml to zensical.toml ([c9623c4](https://github.com/rknightion/kiosker-ha/commit/c9623c42b98553d17b4d11bea1e7099bbf0040b7))
+
 ## [1.1.4](https://github.com/rknightion/kiosker-ha/compare/v1.1.3...v1.1.4) (2025-12-20)
 
 

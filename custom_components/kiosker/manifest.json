@@ -8,11 +8,6 @@
     "@rknightion"
   ],
   "config_flow": true,
-  "zeroconf": [
-    {
-      "type": "_kiosker._tcp.local."
-    }
-  ],
   "documentation": "https://m7kni.io/kiosker-ha/",
   "integration_type": "hub",
   "iot_class": "cloud_polling",
@@ -22,8 +17,11 @@
     "custom_components.kiosker"
   ],
   "quality_scale": "silver",
-  "requirements": [
-    "aiohttp>=3.12.1"
-  ],
-  "version": "1.2.0"
+  "requirements": ["aiohttp>=3.12.1"],
+  "version": "1.1.4",
+  "zeroconf": [
+    {
+      "type": "_kiosker._tcp.local."
+    }
+  ]
 }

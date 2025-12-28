@@ -3,11 +3,25 @@
     "step": {
       "user": {
         "title": "Connect Kiosker",
-        "description": "Enter the base API URL (for example http://tablet-office:8081/api/v1) and the access token generated in the Kiosker app. The integration will validate the connection and fetch device details.",
+        "description": "API access requires Kiosker Pro. Copy the Base URL (includes /api/v1) and access token from the Kiosker app. After pasting, click or tap out of each field before submitting.",
         "data": {
           "name": "Name",
           "base_url": "API base URL",
           "access_token": "Access token"
+        },
+        "data_description": {
+          "base_url": "Example: http://ipad-ip:8081/api/v1 (use your iPad's IP address).",
+          "access_token": "Paste the token from the Kiosker app. Click or tap out of the field after pasting."
+        }
+      },
+      "zeroconf_confirm": {
+        "title": "Connect Kiosker",
+        "description": "Discovered {name}. Enter the access token to finish setup.",
+        "data": {
+          "access_token": "Access token"
+        },
+        "data_description": {
+          "access_token": "Paste the token from the Kiosker app. Click or tap out of the field after pasting."
         }
       },
       "reauth_confirm": {
@@ -23,8 +37,11 @@
       "invalid_auth": "Authentication failed. Verify the access token.",
       "unknown": "Unexpected error. Check Home Assistant logs."
     },
+    "flow_title": "{name}",
     "abort": {
       "already_configured": "This kiosk is already configured.",
+      "missing_discovery": "Discovery information is missing. Try adding the integration again.",
+      "missing_uuid": "Discovery did not include a device UUID.",
       "reauth_successful": "Re-authentication completed."
     }
   },

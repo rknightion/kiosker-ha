@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/rknightion/kiosker-ha/compare/v1.2.0...v1.2.1) (2026-01-08)
+
+
+### Miscellaneous Chores
+
+* **deps:** lock file maintenance ([#40](https://github.com/rknightion/kiosker-ha/issues/40)) ([052b776](https://github.com/rknightion/kiosker-ha/commit/052b77662619c7152cf125b3df89d1db243c1a86))
+* **deps:** lock file maintenance ([#42](https://github.com/rknightion/kiosker-ha/issues/42)) ([25fcdce](https://github.com/rknightion/kiosker-ha/commit/25fcdcea16786b1cea56629e016cce95d8e160e5))
+* **deps:** lock file maintenance ([#43](https://github.com/rknightion/kiosker-ha/issues/43)) ([4736e8c](https://github.com/rknightion/kiosker-ha/commit/4736e8c6a8e7148476a1cd76a7c3c97de01de646))
+* **deps:** lock file maintenance ([#44](https://github.com/rknightion/kiosker-ha/issues/44)) ([7d08ccc](https://github.com/rknightion/kiosker-ha/commit/7d08cccabb8b4c197add7a9743f0fafcf9a56124))
+* **deps:** update anthropics/claude-code-action digest to 1b8ee3b ([#47](https://github.com/rknightion/kiosker-ha/issues/47)) ([d11a037](https://github.com/rknightion/kiosker-ha/commit/d11a03731712a49f04163ef38aed6667c3b9af88))
+* **deps:** update anthropics/claude-code-action digest to c9ec2b0 ([#45](https://github.com/rknightion/kiosker-ha/issues/45)) ([15e4a8b](https://github.com/rknightion/kiosker-ha/commit/15e4a8be97bfd303b8f6f082f1bb88930d044f21))
+* **deps:** update astral-sh/setup-uv action to v7.2.0 ([#46](https://github.com/rknightion/kiosker-ha/issues/46)) ([c1752b5](https://github.com/rknightion/kiosker-ha/commit/c1752b5f3e2dcd8259356e4335e9757c4297f573))
+* **deps:** update dependency ruff to v0.14.11 ([#48](https://github.com/rknightion/kiosker-ha/issues/48)) ([ff7c903](https://github.com/rknightion/kiosker-ha/commit/ff7c903f642dfbabe45017f93aaf427467161375))
+
 ## [1.2.0](https://github.com/rknightion/kiosker-ha/compare/v1.1.4...v1.2.0) (2025-12-28)
 
 

@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/rknightion/kiosker-ha/compare/v1.2.0...v1.2.1) (2026-01-17)
+
+
+### Miscellaneous Chores
+
+* **deps:** lock file maintenance ([#40](https://github.com/rknightion/kiosker-ha/issues/40)) ([052b776](https://github.com/rknightion/kiosker-ha/commit/052b77662619c7152cf125b3df89d1db243c1a86))
+* **deps:** lock file maintenance ([#42](https://github.com/rknightion/kiosker-ha/issues/42)) ([25fcdce](https://github.com/rknightion/kiosker-ha/commit/25fcdcea16786b1cea56629e016cce95d8e160e5))
+* **deps:** lock file maintenance ([#43](https://github.com/rknightion/kiosker-ha/issues/43)) ([4736e8c](https://github.com/rknightion/kiosker-ha/commit/4736e8c6a8e7148476a1cd76a7c3c97de01de646))
+* **deps:** lock file maintenance ([#44](https://github.com/rknightion/kiosker-ha/issues/44)) ([7d08ccc](https://github.com/rknightion/kiosker-ha/commit/7d08cccabb8b4c197add7a9743f0fafcf9a56124))
+* **deps:** lock file maintenance ([#49](https://github.com/rknightion/kiosker-ha/issues/49)) ([851dc7f](https://github.com/rknightion/kiosker-ha/commit/851dc7fb4256a26cbb24eb91f1621eb9a6814d91))
+* **deps:** lock file maintenance ([#50](https://github.com/rknightion/kiosker-ha/issues/50)) ([22b3aca](https://github.com/rknightion/kiosker-ha/commit/22b3aca7277784008207d1a75780dd985c47b9e7))
+* **deps:** update anthropics/claude-code-action digest to 1b8ee3b ([#47](https://github.com/rknightion/kiosker-ha/issues/47)) ([d11a037](https://github.com/rknightion/kiosker-ha/commit/d11a03731712a49f04163ef38aed6667c3b9af88))
+* **deps:** update anthropics/claude-code-action digest to a017b83 ([#55](https://github.com/rknightion/kiosker-ha/issues/55)) ([23eddee](https://github.com/rknightion/kiosker-ha/commit/23eddee7196a99debcccf146fff31b3e6d6165c4))
+* **deps:** update anthropics/claude-code-action digest to c9ec2b0 ([#45](https://github.com/rknightion/kiosker-ha/issues/45)) ([15e4a8b](https://github.com/rknightion/kiosker-ha/commit/15e4a8be97bfd303b8f6f082f1bb88930d044f21))
+* **deps:** update astral-sh/setup-uv action to v7.2.0 ([#46](https://github.com/rknightion/kiosker-ha/issues/46)) ([c1752b5](https://github.com/rknightion/kiosker-ha/commit/c1752b5f3e2dcd8259356e4335e9757c4297f573))
+* **deps:** update dependency ruff to v0.14.11 ([#48](https://github.com/rknightion/kiosker-ha/issues/48)) ([ff7c903](https://github.com/rknightion/kiosker-ha/commit/ff7c903f642dfbabe45017f93aaf427467161375))
+* **deps:** update dependency ruff to v0.14.12 ([#53](https://github.com/rknightion/kiosker-ha/issues/53)) ([ca3fc78](https://github.com/rknightion/kiosker-ha/commit/ca3fc78aa8bf61cd63bdec6835d3dd5358846c65))
+* **deps:** update dependency ruff to v0.14.13 ([#54](https://github.com/rknightion/kiosker-ha/issues/54)) ([b1ec253](https://github.com/rknightion/kiosker-ha/commit/b1ec253be4e5c425a25662f657ed1a24fd2a69d5))
+* **deps:** update github/codeql-action action to v4.31.10 ([#52](https://github.com/rknightion/kiosker-ha/issues/52)) ([ad61f6a](https://github.com/rknightion/kiosker-ha/commit/ad61f6a6fb7a284b093940824c57e5612bacc9d7))
+* **deps:** update github/codeql-action digest to cdefb33 ([#51](https://github.com/rknightion/kiosker-ha/issues/51)) ([99254a7](https://github.com/rknightion/kiosker-ha/commit/99254a7f6a0ed2731b44497944013ce1525ea8ca))
+
 ## [1.2.0](https://github.com/rknightion/kiosker-ha/compare/v1.1.4...v1.2.0) (2025-12-28)
 
 

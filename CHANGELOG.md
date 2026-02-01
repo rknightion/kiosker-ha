@@ -5,6 +5,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1](https://github.com/rknightion/kiosker-ha/compare/v1.2.0...v1.2.1) (2026-02-01)
+
+
+### Miscellaneous Chores
+
+* **deps:** lock file maintenance ([#40](https://github.com/rknightion/kiosker-ha/issues/40)) ([052b776](https://github.com/rknightion/kiosker-ha/commit/052b77662619c7152cf125b3df89d1db243c1a86))
+* **deps:** lock file maintenance ([#42](https://github.com/rknightion/kiosker-ha/issues/42)) ([25fcdce](https://github.com/rknightion/kiosker-ha/commit/25fcdcea16786b1cea56629e016cce95d8e160e5))
+* **deps:** lock file maintenance ([#43](https://github.com/rknightion/kiosker-ha/issues/43)) ([4736e8c](https://github.com/rknightion/kiosker-ha/commit/4736e8c6a8e7148476a1cd76a7c3c97de01de646))
+* **deps:** lock file maintenance ([#44](https://github.com/rknightion/kiosker-ha/issues/44)) ([7d08ccc](https://github.com/rknightion/kiosker-ha/commit/7d08cccabb8b4c197add7a9743f0fafcf9a56124))
+* **deps:** lock file maintenance ([#49](https://github.com/rknightion/kiosker-ha/issues/49)) ([851dc7f](https://github.com/rknightion/kiosker-ha/commit/851dc7fb4256a26cbb24eb91f1621eb9a6814d91))
+* **deps:** lock file maintenance ([#50](https://github.com/rknightion/kiosker-ha/issues/50)) ([22b3aca](https://github.com/rknightion/kiosker-ha/commit/22b3aca7277784008207d1a75780dd985c47b9e7))
+* **deps:** lock file maintenance ([#58](https://github.com/rknightion/kiosker-ha/issues/58)) ([921c133](https://github.com/rknightion/kiosker-ha/commit/921c1330520f8fd2adc845dd2da9d739fa46d5e8))
+* **deps:** lock file maintenance ([#59](https://github.com/rknightion/kiosker-ha/issues/59)) ([c34dd2a](https://github.com/rknightion/kiosker-ha/commit/c34dd2a827035b37748e2edc59418f232371c0b5))
+* **deps:** lock file maintenance ([#70](https://github.com/rknightion/kiosker-ha/issues/70)) ([0b12e26](https://github.com/rknightion/kiosker-ha/commit/0b12e26dd085df9f5c597d6aff56a43bf180148b))
+* **deps:** lock file maintenance ([#71](https://github.com/rknightion/kiosker-ha/issues/71)) ([e86e192](https://github.com/rknightion/kiosker-ha/commit/e86e1926ce3bfdeabb2b99bd8d5326c3d5c92bd8))
+* **deps:** update actions/checkout action to v6.0.2 ([#63](https://github.com/rknightion/kiosker-ha/issues/63)) ([29d618c](https://github.com/rknightion/kiosker-ha/commit/29d618c3a450e770ad2e8a6c005770ccc31f8211))
+* **deps:** update actions/setup-python action to v6.2.0 ([#62](https://github.com/rknightion/kiosker-ha/issues/62)) ([0e06d33](https://github.com/rknightion/kiosker-ha/commit/0e06d3359acf60a7847b571caca25a63b5bd60a3))
+* **deps:** update anthropics/claude-code-action digest to 01e756b ([#81](https://github.com/rknightion/kiosker-ha/issues/81)) ([c55ba99](https://github.com/rknightion/kiosker-ha/commit/c55ba994d6cd8abade3c816c2d6934c8c99cbddd))
+* **deps:** update anthropics/claude-code-action digest to 0ed5eea ([#83](https://github.com/rknightion/kiosker-ha/issues/83)) ([7a599ef](https://github.com/rknightion/kiosker-ha/commit/7a599ef3c019de35242e10718036c1a31660961c))
+* **deps:** update anthropics/claude-code-action digest to 1b8ee3b ([#47](https://github.com/rknightion/kiosker-ha/issues/47)) ([d11a037](https://github.com/rknightion/kiosker-ha/commit/d11a03731712a49f04163ef38aed6667c3b9af88))
+* **deps:** update anthropics/claude-code-action digest to 2316a9a ([#61](https://github.com/rknightion/kiosker-ha/issues/61)) ([87e2e68](https://github.com/rknightion/kiosker-ha/commit/87e2e688ea893481069b1c2554d915057fbe585b))
+* **deps:** update anthropics/claude-code-action digest to 231bd75 ([#78](https://github.com/rknightion/kiosker-ha/issues/78)) ([d0b4804](https://github.com/rknightion/kiosker-ha/commit/d0b48047e7c6b97ba5c127c4191807d6ca09911c))
+* **deps:** update anthropics/claude-code-action digest to 2804b41 ([#64](https://github.com/rknightion/kiosker-ha/issues/64)) ([e141ab6](https://github.com/rknightion/kiosker-ha/commit/e141ab611e400a3e6605714d9f50d8dc0fe74ee9))
+* **deps:** update anthropics/claude-code-action digest to 2817c54 ([#79](https://github.com/rknightion/kiosker-ha/issues/79)) ([648f9f8](https://github.com/rknightion/kiosker-ha/commit/648f9f837724b2486d2fb58b4834d7eb7dc0595c))
+* **deps:** update anthropics/claude-code-action digest to 4126f9d ([#77](https://github.com/rknightion/kiosker-ha/issues/77)) ([e55c01b](https://github.com/rknightion/kiosker-ha/commit/e55c01b2191dd0d50826a3d64a9524a0d489610a))
+* **deps:** update anthropics/claude-code-action digest to 70e16de ([#84](https://github.com/rknightion/kiosker-ha/issues/84)) ([b6b59fe](https://github.com/rknightion/kiosker-ha/commit/b6b59fe55cfcfc7b4a4e1db537690bf785f8c473))
+* **deps:** update anthropics/claude-code-action digest to 8341a56 ([#66](https://github.com/rknightion/kiosker-ha/issues/66)) ([3c60cb3](https://github.com/rknightion/kiosker-ha/commit/3c60cb33290d31f58d3d571f5d1a7e0e470651f0))
+* **deps:** update anthropics/claude-code-action digest to a017b83 ([#55](https://github.com/rknightion/kiosker-ha/issues/55)) ([23eddee](https://github.com/rknightion/kiosker-ha/commit/23eddee7196a99debcccf146fff31b3e6d6165c4))
+* **deps:** update anthropics/claude-code-action digest to c9ec2b0 ([#45](https://github.com/rknightion/kiosker-ha/issues/45)) ([15e4a8b](https://github.com/rknightion/kiosker-ha/commit/15e4a8be97bfd303b8f6f082f1bb88930d044f21))
+* **deps:** update anthropics/claude-code-action digest to f642197 ([#69](https://github.com/rknightion/kiosker-ha/issues/69)) ([7e3aeb4](https://github.com/rknightion/kiosker-ha/commit/7e3aeb400249ba649497eeeab643906935dc6fb5))
+* **deps:** update anthropics/claude-code-action digest to ff34ce0 ([#80](https://github.com/rknightion/kiosker-ha/issues/80)) ([d3e08d5](https://github.com/rknightion/kiosker-ha/commit/d3e08d531cd0aeb631689c6fe7580246928e2370))
+* **deps:** update astral-sh/setup-uv action to v7.2.0 ([#46](https://github.com/rknightion/kiosker-ha/issues/46)) ([c1752b5](https://github.com/rknightion/kiosker-ha/commit/c1752b5f3e2dcd8259356e4335e9757c4297f573))
+* **deps:** update astral-sh/setup-uv action to v7.2.1 ([#82](https://github.com/rknightion/kiosker-ha/issues/82)) ([b23792e](https://github.com/rknightion/kiosker-ha/commit/b23792ea431b59d54edcd64e3cdc76da06c09efc))
+* **deps:** update dependency bandit to v1.9.3 ([#60](https://github.com/rknightion/kiosker-ha/issues/60)) ([5dac028](https://github.com/rknightion/kiosker-ha/commit/5dac028053bd1e256075766b86a35ea616a37fe7))
+* **deps:** update dependency ruff to v0.14.11 ([#48](https://github.com/rknightion/kiosker-ha/issues/48)) ([ff7c903](https://github.com/rknightion/kiosker-ha/commit/ff7c903f642dfbabe45017f93aaf427467161375))
+* **deps:** update dependency ruff to v0.14.12 ([#53](https://github.com/rknightion/kiosker-ha/issues/53)) ([ca3fc78](https://github.com/rknightion/kiosker-ha/commit/ca3fc78aa8bf61cd63bdec6835d3dd5358846c65))
+* **deps:** update dependency ruff to v0.14.13 ([#54](https://github.com/rknightion/kiosker-ha/issues/54)) ([b1ec253](https://github.com/rknightion/kiosker-ha/commit/b1ec253be4e5c425a25662f657ed1a24fd2a69d5))
+* **deps:** update dependency ruff to v0.14.14 ([#65](https://github.com/rknightion/kiosker-ha/issues/65)) ([24fd5ae](https://github.com/rknightion/kiosker-ha/commit/24fd5aea34463f09b82b53e25bd562784049115e))
+* **deps:** update github/codeql-action action to v4.31.10 ([#52](https://github.com/rknightion/kiosker-ha/issues/52)) ([ad61f6a](https://github.com/rknightion/kiosker-ha/commit/ad61f6a6fb7a284b093940824c57e5612bacc9d7))
+* **deps:** update github/codeql-action action to v4.31.11 ([#68](https://github.com/rknightion/kiosker-ha/issues/68)) ([4df0b5d](https://github.com/rknightion/kiosker-ha/commit/4df0b5d85f86e20d843ae781a2d17a50d5106201))
+* **deps:** update github/codeql-action action to v4.32.0 ([#76](https://github.com/rknightion/kiosker-ha/issues/76)) ([ab8da11](https://github.com/rknightion/kiosker-ha/commit/ab8da11b2f0b262d1d0517348371fdf57eed7c49))
+* **deps:** update github/codeql-action digest to 19b2f06 ([#67](https://github.com/rknightion/kiosker-ha/issues/67)) ([3fd1319](https://github.com/rknightion/kiosker-ha/commit/3fd1319ec5a8b2d1551e6d000a75f10226948e12))
+* **deps:** update github/codeql-action digest to b20883b ([#75](https://github.com/rknightion/kiosker-ha/issues/75)) ([73ad86b](https://github.com/rknightion/kiosker-ha/commit/73ad86bc12333b28f1f35167fec2761775be7f7e))
+* **deps:** update github/codeql-action digest to cdefb33 ([#51](https://github.com/rknightion/kiosker-ha/issues/51)) ([99254a7](https://github.com/rknightion/kiosker-ha/commit/99254a7f6a0ed2731b44497944013ce1525ea8ca))
+* **deps:** update hacs/action digest to dcb30e7 ([#74](https://github.com/rknightion/kiosker-ha/issues/74)) ([594e764](https://github.com/rknightion/kiosker-ha/commit/594e764a5a7a976b613aff843e8e0bebb95cfac8))
+* **deps:** update home-assistant/actions digest to 55b4a5d ([#73](https://github.com/rknightion/kiosker-ha/issues/73)) ([7c602a0](https://github.com/rknightion/kiosker-ha/commit/7c602a04ecb3cac6fe55edb8d7e10ecdc1ac94b4))
+* **deps:** update step-security/harden-runner action to v2.14.1 ([#72](https://github.com/rknightion/kiosker-ha/issues/72)) ([48a4620](https://github.com/rknightion/kiosker-ha/commit/48a462036f924f163bf200b3f53f41875fc2a53a))
+* **deps:** update zizmorcore/zizmor-action action to v0.4.0 ([#56](https://github.com/rknightion/kiosker-ha/issues/56)) ([c6ead59](https://github.com/rknightion/kiosker-ha/commit/c6ead59034e14413256d66bbb71de6406d0b4f37))
+* **deps:** update zizmorcore/zizmor-action action to v0.4.1 ([#57](https://github.com/rknightion/kiosker-ha/issues/57)) ([f4a8992](https://github.com/rknightion/kiosker-ha/commit/f4a89923c4c25b296e22415252d0f9fd0e4e2e6d))
+
 ## [1.2.0](https://github.com/rknightion/kiosker-ha/compare/v1.1.4...v1.2.0) (2025-12-28)
 
 

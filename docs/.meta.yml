@@ -1,0 +1,14 @@
+title: Kiosker Home Assistant Integration Documentation
+description: A comprehensive Home Assistant custom integration for monitoring and controlling Kiosker iOS kiosk devices with real-time status and remote management
+tags:
+  - home-assistant
+  - kiosker
+  - kiosk-management
+  - ios
+image: assets/social-card.png
+twitter:
+  creator: "@rknightion"
+  site: "@rknightion"
+robots: index,follow
+language: en
+canonical_base: https://m7kni.io/kiosker-ha/

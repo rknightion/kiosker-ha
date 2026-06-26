@@ -10,6 +10,8 @@ on:
       - 'scripts/**'
   workflow_dispatch:
 
+permissions: {} # GITHUB_TOKEN unused; job authenticates via DOCS_SYNC_PAT
+
 concurrency:
   group: docs-sync-${{ github.repository }}
   cancel-in-progress: true

@@ -97,6 +97,8 @@ jobs:
         uses: hacs/action@dcb30e72781db3f207d5236b861172774ab0b485 # zizmor: ignore[ref-version-mismatch] no semver tags; branch-tip SHA is the intended pin
         with:
           category: integration
+          # Remove this 'ignore' key when brand assets are added to https://github.com/home-assistant/brands
+          ignore: brands
 
   # Test the integration
   pytest:
@@ -185,12 +187,13 @@ jobs:
   ci-success:
     runs-on: ubuntu-latest
     name: ci-success
-    # hassfest/hacs run on every PR but stay informational (not gated): HACS currently fails the
-    # brands check and isn't published to HA brands. Add them here once green.
+    # All four legs are required: HACS brands check is suppressed via ignore: brands (not in HA brands repo).
     if: always()
     needs:
       - lint-and-scan
       - pytest
+      - hassfest
+      - hacs
     steps:
       - name: Fail if any required job did not pass
         if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}

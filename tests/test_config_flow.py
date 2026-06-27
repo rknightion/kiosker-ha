@@ -76,10 +76,13 @@ async def test_user_flow_creates_entry(hass, enable_custom_integrations) -> None
         last_motion=None,
     )
 
-    with patch(
-        "custom_components.kiosker.config_flow._validate_input",
-        return_value=status,
-    ), patch("custom_components.kiosker.KioskerApiClient"):
+    with (
+        patch(
+            "custom_components.kiosker.config_flow._validate_input",
+            return_value=status,
+        ),
+        patch("custom_components.kiosker.KioskerApiClient"),
+    ):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,
             context={"source": config_entries.SOURCE_USER},
@@ -95,9 +98,7 @@ async def test_user_flow_creates_entry(hass, enable_custom_integrations) -> None
     }
 
 
-async def test_zeroconf_flow_creates_entry(
-    hass, enable_custom_integrations
-) -> None:
+async def test_zeroconf_flow_creates_entry(hass, enable_custom_integrations) -> None:
     """Zeroconf flow creates an entry and prefers IPv4 addresses."""
     uuid = "8681F678-F197-404E-B22D-DBA9AB60B326"
     discovery_info = _make_zeroconf_info(
@@ -122,10 +123,13 @@ async def test_zeroconf_flow_creates_entry(
         last_motion=None,
     )
 
-    with patch(
-        "custom_components.kiosker.config_flow._validate_input",
-        return_value=status,
-    ), patch("custom_components.kiosker.KioskerApiClient"):
+    with (
+        patch(
+            "custom_components.kiosker.config_flow._validate_input",
+            return_value=status,
+        ),
+        patch("custom_components.kiosker.KioskerApiClient"),
+    ):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,
             context={"source": config_entries.SOURCE_ZEROCONF},
@@ -270,9 +274,7 @@ async def test_reauth_flow_updates_entry(
             return_value=status,
         ),
         patch("custom_components.kiosker.KioskerApiClient"),
-        patch.object(
-            hass.config_entries, "async_reload", AsyncMock()
-        ) as reload_mock,
+        patch.object(hass.config_entries, "async_reload", AsyncMock()) as reload_mock,
     ):
         result = await hass.config_entries.flow.async_init(
             DOMAIN,

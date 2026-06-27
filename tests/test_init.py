@@ -1,6 +1,10 @@
 from __future__ import annotations
 
-from custom_components.kiosker.const import CONF_SCAN_INTERVAL, DOMAIN, MIN_SCAN_INTERVAL
+from custom_components.kiosker.const import (
+    CONF_SCAN_INTERVAL,
+    DOMAIN,
+    MIN_SCAN_INTERVAL,
+)
 
 
 async def test_async_setup_entry_stores_runtime_data(

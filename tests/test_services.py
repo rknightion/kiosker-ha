@@ -64,9 +64,7 @@ async def test_services_call_client_and_refresh(hass, setup_integration) -> None
         {"disabled": True},
         blocking=True,
     )
-    client.async_set_screensaver.assert_awaited_once_with(
-        disabled=True, visible=None
-    )
+    client.async_set_screensaver.assert_awaited_once_with(disabled=True, visible=None)
     coordinator.async_request_refresh.assert_awaited_once()
 
     await hass.services.async_call(

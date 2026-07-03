@@ -5,6 +5,7 @@
 
   [![GitHub Release](https://img.shields.io/github/v/release/rknightion/kiosker-ha?style=flat-square)](https://github.com/rknightion/kiosker-ha/releases)
   [![License](https://img.shields.io/github/license/rknightion/kiosker-ha?style=flat-square)](LICENSE)
+  [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/rknightion/kiosker-ha/badge)](https://scorecard.dev/viewer/?uri=github.com/rknightion/kiosker-ha)
   [![HACS](https://img.shields.io/badge/HACS-Default-orange.svg?style=flat-square)](https://hacs.xyz)
   [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.8.0+-blue.svg?style=flat-square)](https://www.home-assistant.io)
 </div>

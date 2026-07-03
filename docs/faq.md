@@ -5,6 +5,8 @@ description: Common questions and troubleshooting steps for the Kiosker integrat
 
 # FAQ & Troubleshooting
 
+Answers to common setup and troubleshooting questions for the Kiosker integration, covering API access, connection errors, authentication, and diagnostics.
+
 ## Where do I find the Base URL and Access Token?
 
 In the Kiosker app, open **Settings > Remote Admin / API**. Enable the API and generate/copy

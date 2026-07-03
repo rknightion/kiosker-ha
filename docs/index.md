@@ -10,7 +10,7 @@ image: assets/social-card.png
 
 # Kiosker Home Assistant Integration
 
-Keep your wall-mounted dashboards and tablets in sync with Home Assistant. This custom integration talks to the Kiosker app API to surface live device status, expose remote navigation controls, and let you manage screensaver/blackout behavior without picking up the tablet.
+**Kiosker Home Assistant Integration** is a custom Home Assistant integration that connects to the Kiosker iOS kiosk app's API, surfacing live device status, remote navigation controls, and screensaver/blackout management as native Home Assistant entities. Keep your wall-mounted dashboards and tablets in sync with Home Assistant without picking up the tablet.
 
 ## What you can do
 
